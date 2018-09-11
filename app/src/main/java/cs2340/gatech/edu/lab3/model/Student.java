@@ -73,9 +73,21 @@ public class Student implements Parcelable {
      * @param major     the student's major
      */
     public Student(String name, String major) {
+        this(name, major, ClassStanding.FRESHMAN);
+        _id = Student.Next_Id++;
+    }
+
+    /**
+     * Make a new student
+     * @param name      the student's name
+     * @param major     the student's major
+     * @param standing the student's class standing
+     */
+    public Student(String name, String major, ClassStanding standing) {
         _name = name;
         _major= major;
         _id = Student.Next_Id++;
+        _classStanding = standing;
     }
 
     /**
@@ -92,7 +104,7 @@ public class Student implements Parcelable {
      */
     @Override
     public String toString() {
-        return _name + " " + _major;
+        return _name + " " + _classStanding + " " + _major;
     }
 
 
@@ -116,8 +128,15 @@ public class Student implements Parcelable {
         _name = in.readString();
         _major = in.readString();
         _id = in.readInt();
+        _classStanding = (ClassStanding) in.readSerializable();
+    }
 
+    public Enum getClassStanding() {
+        return _classStanding;
+    }
 
+    public void setClassStanding(Enum standing) {
+        _classStanding = standing;
     }
 
     @Override
@@ -135,8 +154,7 @@ public class Student implements Parcelable {
          dest.writeString(_name);
          dest.writeString(_major);
          dest.writeInt(_id);
-
-
+         dest.writeSerializable(_classStanding);
     }
 
     /**
