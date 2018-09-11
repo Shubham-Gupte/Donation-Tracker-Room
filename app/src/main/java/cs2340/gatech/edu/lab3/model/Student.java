@@ -33,6 +33,9 @@ public class Student implements Parcelable {
     /** this students major */
     private String _major;
 
+    /** this students class standing */
+    private Enum _classStanding;
+
 
     /* **********************
      * Getters and setters
