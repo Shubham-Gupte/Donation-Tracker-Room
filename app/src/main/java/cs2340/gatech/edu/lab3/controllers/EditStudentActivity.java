@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import cs2340.gatech.edu.lab3.R;
+import cs2340.gatech.edu.lab3.model.ClassStanding;
 import cs2340.gatech.edu.lab3.model.Model;
 import cs2340.gatech.edu.lab3.model.Student;
 
@@ -26,11 +27,13 @@ public class EditStudentActivity extends AppCompatActivity implements AdapterVie
     private TextView idField;
     private EditText nameField;
     private Spinner majorSpinner;
+    private Spinner classStandingSpinner;
 
     /* ************************
        Keeping track of spinner changes.  Not really used right now, probably don't need this.
      */
     private String _major = "NA";
+    private String _classStanding = "NA";
 
     /* ***********************
        Data for student being edited.
@@ -63,6 +66,7 @@ public class EditStudentActivity extends AppCompatActivity implements AdapterVie
          */
         nameField = (EditText) findViewById(R.id.student_name_input);
         majorSpinner = (Spinner) findViewById(R.id.spinner);
+        classStandingSpinner = (Spinner) findViewById(R.id.classStandingSpinnerID);
         idField = (TextView) findViewById(R.id.student_id_field);
 
         /*
@@ -73,11 +77,19 @@ public class EditStudentActivity extends AppCompatActivity implements AdapterVie
         majorSpinner.setAdapter(adapter);
 
         /*
+          Set up the adapter to display the class standings in the spinner
+         */
+        ArrayAdapter<String> spinnerClassStandingAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, ClassStanding.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classStandingSpinner.setAdapter(spinnerClassStandingAdapter);
+
+        /*
            If a student has been passed in, this was an edit, if not, this is a new add
          */
         if (getIntent().hasExtra(CourseDetailFragment.ARG_STUDENT_ID)) {
             _student = (Student) getIntent().getParcelableExtra(CourseDetailFragment.ARG_STUDENT_ID);
             majorSpinner.setSelection(Student.findPosition(_student.getMajor()));
+            classStandingSpinner.setSelection(_student.getClassStanding().ordinal());
             editing = true;
         } else {
             _student = new Student();
@@ -99,6 +111,7 @@ public class EditStudentActivity extends AppCompatActivity implements AdapterVie
 
         _student.setName(nameField.getText().toString());
         _student.setMajor((String) majorSpinner.getSelectedItem());
+        _student.setClassStanding( (ClassStanding) classStandingSpinner.getSelectedItem());
 
         Log.d("Edit", "Got new student data: " + _student);
         if (!editing) {
