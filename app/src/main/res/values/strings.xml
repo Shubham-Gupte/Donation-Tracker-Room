@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">Lab3</string>
-    <string name="title_course_detail">Class Roster</string>
-    <string name="title_activity_edit_student">EditStudentActivity</string>
+    <string name="app_name">Donation Tracker</string>
 </resources>
