@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
+                Intent i = new Intent(MainActivity.this, RegisterScreen.class);
+                startActivity(i);
                 if (user.getText().toString().equals("user") && password.getText().toString().equals("pass")) {
                     //correct, login
                     Toast.makeText(getApplicationContext(),
