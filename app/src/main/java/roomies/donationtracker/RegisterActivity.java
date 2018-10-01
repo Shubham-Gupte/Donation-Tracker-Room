@@ -11,6 +11,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 
 public class RegisterActivity extends AppCompatActivity {
     Button registerButton;
@@ -21,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     Switch adminSwitch;
     EditText adminKey;
     String key = "testKey123";
+    HashMap userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user = findViewById(R.id.editName);
                 if (adminKey.getVisibility() == View.GONE) {
                     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                        userList.put(user.getText().toString(), password.getText().toString());
                         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(i);
                     } else {
