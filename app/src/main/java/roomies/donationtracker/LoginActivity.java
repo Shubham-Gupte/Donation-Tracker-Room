@@ -46,25 +46,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
-                if (user.getText().toString().equals("user") && password.getText().toString().equals("pass")) {
-                    //correct, login
-                    Toast.makeText(getApplicationContext(),
-                            "Thanks for making an account. Logging you in...",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    //incorrect
-                    Toast.makeText(getApplicationContext(),
-                            "Can't make an account with those credentials at this time.",
-                            Toast.LENGTH_SHORT).show();
-                }
             }
         });
+
     }
 
 }

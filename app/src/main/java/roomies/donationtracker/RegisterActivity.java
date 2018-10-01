@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,12 +18,15 @@ public class RegisterActivity extends AppCompatActivity {
     EditText user;
     EditText password;
     EditText confirmPassword;
+    Switch adminSwitch;
+    EditText adminKey;
+    String key = "testKey123";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_screen);
-
+        adminKey = findViewById(R.id.adminAuthentication);
         registerButton = findViewById(R.id.signUpButton);
 
         //for right now, the register button will just check if the passwords match
@@ -31,16 +36,34 @@ public class RegisterActivity extends AppCompatActivity {
                 password = findViewById(R.id.editPassword);
                 confirmPassword = findViewById(R.id.editPassword2);
                 user = findViewById(R.id.editName);
-                if (password.getText().toString().equals(confirmPassword.getText().toString())) {
-                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(i);
+                if (adminKey.getVisibility() == View.GONE) {
+                    if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(i);
+                    } else {
+                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                        fail.setTitle("Registration");
+                        fail.setMessage("Passwords do not Match!");
+                        fail.show();
+                    }
                 } else {
-                    AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
-                    fail.setTitle("Registration");
-                    fail.setMessage("Passwords do not Match!");
-                    fail.show();
+                    if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
+                           adminKey.getText().toString().equals(key)) {
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(i);
+                    } else if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                        fail.setTitle("Registration");
+                        fail.setMessage("Admin Authentication incorrect!");
+                        fail.show();
+                    } else {
+                            AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                            fail.setTitle("Registration");
+                            fail.setMessage("Passwords do not Match!");
+                            fail.show();
+                        }
+                    }
                 }
-            }
         });
 
         cancelRegistrationButton = findViewById(R.id.cancelRegistrationButton);
@@ -49,6 +72,21 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(i);
+            }
+        });
+
+        adminSwitch = findViewById(R.id.adminSwitch);
+        adminSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (adminKey.getVisibility() == View.GONE) {
+                    adminKey.setVisibility(View.VISIBLE);
+                    findViewById(R.id.adminText).setVisibility(View.VISIBLE);
+                } else {
+                    adminKey.setVisibility(View.GONE);
+                    findViewById(R.id.adminText).setVisibility(View.GONE);
+                }
+
             }
         });
     }
