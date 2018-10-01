@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity {
     Button login;
     Button register;
-    HashMap userList;
+    static HashMap userList;
     EditText user;
     EditText password;
     int counter = 3;
@@ -61,12 +61,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public HashMap<String, String> getUserList() {
+    public static  HashMap<String, String> getUserList() {
         return userList;
     }
 
-    public void setUserList(HashMap<String, String> users) {
-        this.userList = users;
+    public static  void setUserList(HashMap<String, String> users) {
+        userList = users;
     }
 
 }

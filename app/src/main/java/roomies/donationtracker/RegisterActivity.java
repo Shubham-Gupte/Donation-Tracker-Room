@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.register_screen);
         adminKey = findViewById(R.id.adminAuthentication);
         registerButton = findViewById(R.id.signUpButton);
+        userList = LoginActivity.getUserList();
 
         //for right now, the register button will just check if the passwords match
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -38,10 +39,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 password = findViewById(R.id.editPassword);
                 confirmPassword = findViewById(R.id.editPassword2);
-                user = findViewById(R.id.editName);
+                user = findViewById(R.id.editID);
                 if (adminKey.getVisibility() == View.GONE) {
                     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
                         userList.put(user.getText().toString(), password.getText().toString());
+                        LoginActivity.setUserList(userList);
                         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(i);
                     } else {
@@ -54,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
                            adminKey.getText().toString().equals(key)) {
                         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+
                         startActivity(i);
                     } else if (password.getText().toString().equals(confirmPassword.getText().toString())) {
                         AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
