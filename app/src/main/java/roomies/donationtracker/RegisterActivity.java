@@ -23,7 +23,11 @@ public class RegisterActivity extends AppCompatActivity {
     Switch adminSwitch;
     EditText adminKey;
     String key = "testKey123";
-    HashMap userList;
+    static HashMap userList;
+
+    public static HashMap<String, String> getUserList() {
+        return userList;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

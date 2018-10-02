@@ -28,6 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.passwordInput);
         userList = new HashMap<String, String>();
 
+        if (userList.isEmpty()) {
+            userList = RegisterActivity.getUserList();
+        }
+        if (userList == null) {
+            userList = new HashMap<String, String>();
+        }
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
