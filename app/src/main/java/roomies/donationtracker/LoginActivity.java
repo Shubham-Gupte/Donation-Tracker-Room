@@ -8,9 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
     Button login;
     Button register;
+    static HashMap userList;
     EditText user;
     EditText password;
     int counter = 3;
@@ -23,12 +26,19 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.registrationButton);
         user = (EditText) findViewById(R.id.userInput);
         password = (EditText) findViewById(R.id.passwordInput);
+        userList = new HashMap<String, String>();
 
+        if (userList.isEmpty()) {
+            userList = RegisterActivity.getUserList();
+        }
+        if (userList == null) {
+            userList = new HashMap<String, String>();
+        }
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (user.getText().toString().equals("user")
-                        && password.getText().toString().equals("pass")) {
+                if (userList.containsKey(user.getText().toString())
+                        && userList.containsValue(password.getText().toString())) {
                     //correct, login
                     Toast.makeText(getApplicationContext(),
                             "Correct! Logging you in...", Toast.LENGTH_SHORT).show();
@@ -51,9 +61,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View V) {
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
+
             }
         });
 
+    }
+
+    public static  HashMap<String, String> getUserList() {
+        return userList;
+    }
+
+    public static  void setUserList(HashMap<String, String> users) {
+        userList = users;
     }
 
 }
