@@ -59,6 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
                            adminKey.getText().toString().equals(key)) {
+                        userList.put(user.getText().toString(), password.getText().toString());
+                        LoginActivity.setUserList(userList);
+
                         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
 
                         startActivity(i);
