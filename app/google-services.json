@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "422847293087",
+    "firebase_url": "https://donation-tracker-room.firebaseio.com",
+    "project_id": "donation-tracker-room",
+    "storage_bucket": "donation-tracker-room.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422847293087:android:4b82cf18596038b4",
+        "android_client_info": {
+          "package_name": "roomies.donationtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422847293087-vbhvc22fpsri0fu65923ufk72clduq1s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "roomies.donationtracker",
+            "certificate_hash": "043f9e15a1ea19cce7e4bcbe094b6647d9ead7a4"
+          }
+        },
+        {
+          "client_id": "422847293087-nrb9ftakp8nu51q5da030ia1eeggimc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjQj0zgL6LnqX9yUDwWIHO62HuaLZ-PW8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422847293087-nrb9ftakp8nu51q5da030ia1eeggimc1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
