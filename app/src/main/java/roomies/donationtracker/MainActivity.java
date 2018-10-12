@@ -14,6 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
     Button logout;
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         locationText = findViewById(R.id.textViewLocation);
         logout = findViewById(R.id.logoutButton);
 
+        DataSnapshot snap = mainDatabase.child("locations");
+        String count = "1";
+        ArrayList<Location> locationList = new ArrayList<>();
+        for (DataSnapshot x : snap.getChildren()) {
+            locationList.add(new Location());
+        }
 
 
         logout.setOnClickListener(new View.OnClickListener(){
@@ -50,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 long text = dataSnapshot.getChildrenCount();
                 String l = String.valueOf(text);
                 locationText.setText(l);
-                for (DataSnapshot x : dataSnapshot.getChildren()) {
-                    System.out.println(x.child("Name").getValue());
-                    System.out.println(x.child("Type").getValue());
-                    System.out.println(x.child("City").getValue());
-                }
+//                for (DataSnapshot x : dataSnapshot.getChildren()) {
+//                    System.out.println(x.child("Name").getValue());
+//                    System.out.println(x.child("Type").getValue());
+//                    System.out.println(x.child("City").getValue());
+//                }
             }
 
             @Override
