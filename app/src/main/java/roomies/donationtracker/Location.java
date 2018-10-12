@@ -9,17 +9,13 @@ public class Location {
     private String phoneNumber;
 
     public Location(String locationName, String locationType, String longitude, String latitude,
-                    String address, String phoneNumber) {
+                    String street, String city, String state, String zip, String phoneNumber) {
         this.locationName = locationName;
         this.locationType = locationType;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.address = address;
+        this.address = street + ", " + city + ", " + state + ", " + zip;
         this.phoneNumber = phoneNumber;
-    }
-
-    public static void main() {
-
     }
 
     public String getLocationName() {

@@ -14,7 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference childReference = mainDatabase.child("locations");
+    Set<Location> allLocations = new HashSet<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         locationText = findViewById(R.id.textViewLocation);
         logout = findViewById(R.id.logoutButton);
-
-//        DataSnapshot snap = mainDatabase.child("locations");
-//        String count = "1";
-//        ArrayList<Location> locationList = new ArrayList<>();
-//        for (DataSnapshot x : snap.getChildren()) {
-//            locationList.add(new Location());
-//        }
 
 
         logout.setOnClickListener(new View.OnClickListener(){
@@ -58,11 +53,28 @@ public class MainActivity extends AppCompatActivity {
                 long text = dataSnapshot.getChildrenCount();
                 String l = String.valueOf(text);
                 locationText.setText(l);
-//                for (DataSnapshot x : dataSnapshot.getChildren()) {
-//                    System.out.println(x.child("Name").getValue());
-//                    System.out.println(x.child("Type").getValue());
-//                    System.out.println(x.child("City").getValue());
-//                }
+                for (DataSnapshot x : dataSnapshot.getChildren()) {
+                    System.out.println("Name: " + x.child("Name").getValue());
+                    System.out.println("Type: " + x.child("Type").getValue());
+                    System.out.println("Longitude: " + x.child("Longitude").getValue());
+                    System.out.println("Latitude: " + x.child("Latitude").getValue());
+                    System.out.println("Street Address: " + x.child("Street Address").getValue());
+                    System.out.println("City: " + x.child("City").getValue());
+                    System.out.println("State: " + x.child("State").getValue());
+                    System.out.println("Zip: " + x.child("Zip").getValue());
+                    System.out.println("Phone: " + x.child("Phone").getValue());
+                    Location toAdd = new Location((String)x.child("Name").getValue(),
+                            (String)x.child("Type").getValue(),
+                            String.valueOf(x.child("Longitude").getValue()),
+                            String.valueOf(x.child("Latitude").getValue()),
+                            (String)x.child("Street Address").getValue(),
+                            (String)x.child("City").getValue(),
+                            (String)x.child("State").getValue(),
+                            String.valueOf(x.child("Zip").getValue()),
+                            (String)x.child("Phone").getValue());
+                    allLocations.add(toAdd);
+                }
+                System.out.println(allLocations);
             }
 
             @Override
