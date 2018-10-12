@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         locationText = findViewById(R.id.textViewLocation);
         logout = findViewById(R.id.logoutButton);
 
+//        DataSnapshot snap = mainDatabase.child("locations");
+//        for (DataSnapshot x : snap.getChildren()) {
+//            System.out.println(x.child("Name").getValue());
+//            System.out.println(x.child("Type").getValue());
+//            System.out.println(x.child("City").getValue());
+//        }
+
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
