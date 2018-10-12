@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         locationText = findViewById(R.id.textViewLocation);
         logout = findViewById(R.id.logoutButton);
 
-        DataSnapshot snap = mainDatabase.child("locations");
-        String count = "1";
-        ArrayList<Location> locationList = new ArrayList<>();
-        for (DataSnapshot x : snap.getChildren()) {
-            locationList.add(new Location());
-        }
+//        DataSnapshot snap = mainDatabase.child("locations");
+//        String count = "1";
+//        ArrayList<Location> locationList = new ArrayList<>();
+//        for (DataSnapshot x : snap.getChildren()) {
+//            locationList.add(new Location());
+//        }
 
 
         logout.setOnClickListener(new View.OnClickListener(){
