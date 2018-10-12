@@ -65,4 +65,8 @@ public class Location {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String toString() {
+        return locationName + ": " + address;
+    }
 }
