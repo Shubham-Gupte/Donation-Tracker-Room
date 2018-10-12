@@ -5,10 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,30 +14,33 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    // Views
     Button logout;
     TextView locationText;
 
-
+    // Firebase connection reference
     DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference childReference = mainDatabase.child("locations");
+
+    // Map to use for creating location list
     Map<String, Location> allLocations = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_screen);
 
+        // Assign view id's
         locationText = findViewById(R.id.textViewLocation);
         logout = findViewById(R.id.logoutButton);
 
-
+        // Logout button functionality
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -58,10 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 long text = dataSnapshot.getChildrenCount();
-                String l = String.valueOf(text);
                 locationText.setText("");
+
+                // Iterate through data from database
                 for (DataSnapshot x : dataSnapshot.getChildren()) {
-             /**    System.out.println("Name: " + x.child("Name").getValue());
+
+                    // Print database location info for debugging
+                    /**
+                    System.out.println("Name: " + x.child("Name").getValue());
                     System.out.println("Type: " + x.child("Type").getValue());
                     System.out.println("Longitude: " + x.child("Longitude").getValue());
                     System.out.println("Latitude: " + x.child("Latitude").getValue());
@@ -69,7 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("City: " + x.child("City").getValue());
                     System.out.println("State: " + x.child("State").getValue());
                     System.out.println("Zip: " + x.child("Zip").getValue());
-                    System.out.println("Phone: " + x.child("Phone").getValue()); **/
+                    System.out.println("Phone: " + x.child("Phone").getValue());
+                     **/
+
+                    // Create a new location object from database data
                     Location toAdd = new Location((String)x.child("Name").getValue(),
                             (String)x.child("Type").getValue(),
                             String.valueOf(x.child("Longitude").getValue()),
@@ -79,19 +86,20 @@ public class MainActivity extends AppCompatActivity {
                             (String)x.child("State").getValue(),
                             String.valueOf(x.child("Zip").getValue()),
                             (String)x.child("Phone").getValue());
-                    allLocations.put(toAdd.getLocationName(), toAdd);
 
+                    // Add new location to location list
+                    allLocations.put(toAdd.getLocationName(), toAdd);
                 }
+
+                // Location dividers
                 for (Location place: allLocations.values()) {
                     locationText.append(place.toString() + "\n______\n");
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+                }
         });
     }
 }

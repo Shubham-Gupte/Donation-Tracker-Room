@@ -15,6 +15,8 @@ import java.util.HashMap;
 
 
 public class RegisterActivity extends AppCompatActivity {
+
+    // Views
     Button registerButton;
     Button cancelRegistrationButton;
     EditText user;
@@ -22,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText confirmPassword;
     Switch adminSwitch;
     EditText adminKey;
+
+    // Variables
     String key = "testKey123";
     static HashMap userList;
 
@@ -33,52 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_screen);
+
+        // Assign view id's
         adminKey = findViewById(R.id.adminAuthentication);
-        registerButton = findViewById(R.id.signUpButton);
-        userList = LoginActivity.getUserList();
-
-        //for right now, the register button will just check if the passwords match
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                password = findViewById(R.id.editPassword);
-                confirmPassword = findViewById(R.id.editPassword2);
-                user = findViewById(R.id.editID);
-                if (adminKey.getVisibility() == View.GONE) {
-                    if (password.getText().toString().equals(confirmPassword.getText().toString())) {
-                        userList.put(user.getText().toString(), password.getText().toString());
-                        LoginActivity.setUserList(userList);
-                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(i);
-                    } else {
-                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
-                        fail.setTitle("Registration");
-                        fail.setMessage("Passwords do not Match!");
-                        fail.show();
-                    }
-                } else {
-                    if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
-                           adminKey.getText().toString().equals(key)) {
-                        userList.put(user.getText().toString(), password.getText().toString());
-                        LoginActivity.setUserList(userList);
-
-                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-
-                        startActivity(i);
-                    } else if (password.getText().toString().equals(confirmPassword.getText().toString())) {
-                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
-                        fail.setTitle("Registration");
-                        fail.setMessage("Admin Authentication incorrect!");
-                        fail.show();
-                    } else {
-                            AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
-                            fail.setTitle("Registration");
-                            fail.setMessage("Passwords do not Match!");
-                            fail.show();
-                        }
-                    }
-                }
-        });
 
         cancelRegistrationButton = findViewById(R.id.cancelRegistrationButton);
         cancelRegistrationButton.setOnClickListener(new View.OnClickListener(){
@@ -103,5 +64,53 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+        registerButton = findViewById(R.id.signUpButton);
+        //for right now, the register button will just check if the passwords match
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                password = findViewById(R.id.editPassword);
+                confirmPassword = findViewById(R.id.editPassword2);
+                user = findViewById(R.id.editID);
+
+                if (adminKey.getVisibility() == View.GONE) {
+                    if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                        userList.put(user.getText().toString(), password.getText().toString());
+                        LoginActivity.setUserList(userList);
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(i);
+                    } else {
+                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                        fail.setTitle("Registration");
+                        fail.setMessage("Passwords do not Match!");
+                        fail.show();
+                    }
+                } else {
+                    if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
+                            adminKey.getText().toString().equals(key)) {
+                        userList.put(user.getText().toString(), password.getText().toString());
+                        LoginActivity.setUserList(userList);
+
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+
+                        startActivity(i);
+                    } else if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                        fail.setTitle("Registration");
+                        fail.setMessage("Admin Authentication incorrect!");
+                        fail.show();
+                    } else {
+                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                        fail.setTitle("Registration");
+                        fail.setMessage("Passwords do not Match!");
+                        fail.show();
+                    }
+                }
+            }
+        });
+
+        userList = LoginActivity.getUserList();
+
     }
 }
