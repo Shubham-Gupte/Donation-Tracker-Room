@@ -13,29 +13,22 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity {
 
     // Views
-    Button login;
-    Button register;
-    EditText user;
-    EditText password;
+    Button loginButton;
+    Button registerButton;
+    EditText userInput;
+    EditText passwordInput;
 
     // Variables
     static HashMap userList;
-    int counter = 3;
+    int loginAttemptsRemaining = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        // Assign view id's
-        login = findViewById(R.id.loginButton);
-        register = findViewById(R.id.registrationButton);
-        user = (EditText) findViewById(R.id.userInput);
-        password = (EditText) findViewById(R.id.passwordInput);
-
-
+        // User list setup
         userList = new HashMap<String, String>();
-
         if (userList.isEmpty()) {
             userList = RegisterActivity.getUserList();
         }
@@ -43,13 +36,23 @@ public class LoginActivity extends AppCompatActivity {
             userList = new HashMap<String, String>();
         }
 
+        // Initialize views
+        initUsernameInput();
+        initPasswordInput();
+        initLoginButton();
+        initRegisterButton();
+    }
+
+    private void initLoginButton() {
+        loginButton = findViewById(R.id.loginButton);
+
         // Login button functionality
-        login.setOnClickListener(new View.OnClickListener(){
+        loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (userList.containsKey(user.getText().toString())
-                        && userList.containsValue(password.getText().toString())) {
-                    //correct, login
+                if (userList.containsKey(userInput.getText().toString())
+                        && userList.containsValue(passwordInput.getText().toString())) {
+                    //correct, loginButton
                     Toast.makeText(getApplicationContext(),
                             "Correct! Logging you in...", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
@@ -57,26 +60,37 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     //incorrect
                     Toast.makeText(getApplicationContext(),
-                            "Wrong login credentials. Try again.", Toast.LENGTH_SHORT).show();
-                    counter--;
-                    if (counter == 0) {
-                        //after 3 attempts disable login button
-                        login.setEnabled(false);
+                            "Wrong loginButton credentials. Try again.", Toast.LENGTH_SHORT).show();
+                    loginAttemptsRemaining--;
+                    if (loginAttemptsRemaining == 0) {
+                        //after 3 attempts disable loginButton button
+                        loginButton.setEnabled(false);
                     }
                 }
             }
         });
+    }
+
+    private void initRegisterButton() {
+        registerButton = findViewById(R.id.registrationButton);
 
         // Register button functionality
-        register.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                // Take to login activity
+                // Take to loginButton activity
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });
+    }
 
+    private void initUsernameInput() {
+        userInput = findViewById(R.id.userInput);
+    }
+
+    private void initPasswordInput() {
+        passwordInput = findViewById(R.id.passwordInput);
     }
 
     public static  HashMap<String, String> getUserList() {

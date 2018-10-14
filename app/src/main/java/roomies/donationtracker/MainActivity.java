@@ -20,32 +20,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Views
-    RecyclerView locationsView;
-    Button logoutButton;
-
-
-
     // Map to use for creating location list
     ArrayList<Location> locationsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.initial_screen);
+        setContentView(R.layout.activity_main);
+        initLogoutButton();
         getLocationsFromDB();
 
-        // Assign view id's
-        logoutButton = findViewById(R.id.logoutButton);
-
-        // Logout button functionality
-        logoutButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
@@ -54,14 +38,28 @@ public class MainActivity extends AppCompatActivity {
         getLocationsFromDB();
     }
 
+    // Creates the locations view
     private void initLocationsView() {
-        // Initialize the locationsView
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewID);
+        RecyclerView locationsView = findViewById(R.id.recyclerViewID);
         LocationsViewAdapter locationsViewAdapter = new LocationsViewAdapter(locationsList);
-        recyclerView.setAdapter(locationsViewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        locationsView.setAdapter(locationsViewAdapter);
+        locationsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // Creates the logout button
+    private void initLogoutButton() {
+        Button logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
+    }
+
+    // Gets the locations from firebase and initializes the locations view
     private void getLocationsFromDB() {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();

@@ -1,6 +1,5 @@
 package roomies.donationtracker;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,10 +18,10 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
         locationsList = locations;
     }
 
-    // Take the cell view from location_cell.xml
+    // Take the cell view from layout_location_cellon_cell.xml
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.location_cell, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_location_cell, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

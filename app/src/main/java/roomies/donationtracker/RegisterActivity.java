@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -36,11 +34,19 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_screen);
+        setContentView(R.layout.activity_register);
 
-        // Assign view id's
-        adminKey = findViewById(R.id.adminAuthentication);
+        userList = LoginActivity.getUserList();
 
+        // Initialize views
+        initAdminSwitch();
+        initRegisterButton();
+        initcancelRegistrationButton();
+    }
+
+
+
+    private void initcancelRegistrationButton() {
         cancelRegistrationButton = findViewById(R.id.cancelRegistrationButton);
         cancelRegistrationButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -49,7 +55,10 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
+
+    private void initAdminSwitch() {
         adminSwitch = findViewById(R.id.adminSwitch);
         adminSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,18 +70,21 @@ public class RegisterActivity extends AppCompatActivity {
                     adminKey.setVisibility(View.GONE);
                     findViewById(R.id.adminText).setVisibility(View.GONE);
                 }
-
             }
         });
+    }
 
+    private void initRegisterButton() {
         registerButton = findViewById(R.id.signUpButton);
-        //for right now, the register button will just check if the passwords match
+        //for right now, the registerButton button will just check if the passwords match
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user = findViewById(R.id.editID);
                 password = findViewById(R.id.editPassword);
                 confirmPassword = findViewById(R.id.editPassword2);
-                user = findViewById(R.id.editID);
+                adminKey = findViewById(R.id.adminAuthentication);
+
 
                 if (adminKey.getVisibility() == View.GONE) {
                     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
@@ -109,8 +121,5 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-        userList = LoginActivity.getUserList();
-
     }
 }
