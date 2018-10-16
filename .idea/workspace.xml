@@ -12,15 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac10bd4c-e3b2-4997-9d76-cd7b178dbfcf" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Admin.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Cashier.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/IntakeEmployee.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Manager.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Viewer.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/WarehouseEmployee.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Item.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Location.java" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Location.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/User.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -98,6 +91,25 @@
             <state relative-caret-position="100">
               <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cashier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Cashier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding>
+                <element signature="e#136#137#0" expanded="true" />
+                <element signature="e#160#161#0" expanded="true" />
+                <element signature="e#213#214#0" expanded="true" />
+                <element signature="e#237#238#0" expanded="true" />
+                <element signature="e#298#299#0" expanded="true" />
+                <element signature="e#325#326#0" expanded="true" />
+                <element signature="e#377#378#0" expanded="true" />
+                <element signature="e#401#402#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2217,6 +2229,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/IntakeEmployee.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/WarehouseEmployee.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Viewer.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Item.java" />
       </list>
     </option>
   </component>
@@ -2552,13 +2565,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2871,10 +2877,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Cashier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="100">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
             <element signature="e#136#137#0" expanded="true" />
             <element signature="e#160#161#0" expanded="true" />
@@ -2888,10 +2902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/User.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/roomies/donationtracker/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="350">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>
