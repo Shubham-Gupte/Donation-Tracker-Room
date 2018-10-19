@@ -5,11 +5,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -22,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText confirmPassword;
     Switch adminSwitch;
     EditText adminKey;
+    Spinner userType;
+    List<String> spinnerArray = Arrays.asList("Location Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier");
 
     // Variables
     String key = "testKey123";
@@ -39,12 +46,20 @@ public class RegisterActivity extends AppCompatActivity {
         userList = LoginActivity.getUserList();
 
         // Initialize views
+        initUserType();
         initAdminSwitch();
         initRegisterButton();
         initcancelRegistrationButton();
+
     }
 
-
+    private void initUserType(){
+        userType = findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        userType.setAdapter(adapter);
+    };
 
     private void initcancelRegistrationButton() {
         cancelRegistrationButton = findViewById(R.id.cancelRegistrationButton);
@@ -84,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                 password = findViewById(R.id.editPassword);
                 confirmPassword = findViewById(R.id.editPassword2);
                 adminKey = findViewById(R.id.adminAuthentication);
+//                userType = (Spinner) findViewbyId(R.id.spinner);
 
 
                 if (adminKey.getVisibility() == View.GONE) {

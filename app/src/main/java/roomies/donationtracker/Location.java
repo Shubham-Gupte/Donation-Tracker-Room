@@ -16,14 +16,14 @@ public class Location {
     private List<Object> itemList;
 
     public Location(String locationName, String locationType, String longitude, String latitude,
-                    String street, String city, String state, String zip, String phoneNumber, int locationID) {
+                    String street, String city, String state, String zip, String phoneNumber) {
         this.locationName = locationName;
         this.locationType = locationType;
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = street + ", " + city + ", " + state + ", " + zip;
         this.phoneNumber = phoneNumber;
-        this.locationID = locationID;
+//        this.locationID = locationID;
     }
 
     public String getLocationName() {
