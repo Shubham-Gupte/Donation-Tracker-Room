@@ -14,4 +14,43 @@ public class Item {
         this.donationDate = donationDate;
         this.donationLocation = donationLocation;
     }
+    public String getItemName() {
+        return this.name;
+    }
+
+    public String getItemType() {
+        return this.type;
+    }
+
+    public float getItemCost() {
+        return this.cost;
+    }
+
+    public String getItemDonateDate() {
+        return this.donationDate;
+    }
+
+    public String getItemDonateLocation() {
+        return this.donationLocation;
+    }
+
+    public void setItemName(String name) {
+        this.name = name;
+    }
+
+    public void setItemType(String type) {
+        this.type = type;
+    }
+
+    public void setItemCost(float cost) {
+        this.cost = cost;
+    }
+
+    public void setItemDonateDate(String date) {
+        this.donationDate = date;
+    }
+
+    public void setItemDonateLocation(String loc) {
+        this.donationLocation = loc;
+    }
 }
