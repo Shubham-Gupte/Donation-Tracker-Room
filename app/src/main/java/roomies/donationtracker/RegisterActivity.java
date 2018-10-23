@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     Switch adminSwitch;
     EditText adminKey;
     Spinner userType;
-    List<String> spinnerArray = Arrays.asList("Location Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier");
+    List<String> spinnerArray = Arrays.asList("Intake Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier");
 
     // Variables
     String key = "testKey123";
