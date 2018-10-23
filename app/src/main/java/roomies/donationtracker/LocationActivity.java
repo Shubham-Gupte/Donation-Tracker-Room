@@ -32,6 +32,7 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         initDoneButton();
+        initAddItemButton();
         getIncomingIntent();
     }
 
@@ -59,7 +60,18 @@ public class LocationActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
+    // Creates the logout button
+    private void initAddItemButton() {
+        Button doneButton = findViewById(R.id.addItemButtonID);
+        doneButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LocationActivity.this, ItemActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     // Creates the locations view

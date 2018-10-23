@@ -68,8 +68,11 @@ public class MainActivity extends AppCompatActivity {
         childReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                locationsList = new ArrayList<>();
                 // Iterate through data from database
                 for (DataSnapshot x : dataSnapshot.getChildren()) {
+
+                    System.out.println(x);
                     // Print database location info for debugging
                     /**
                      System.out.println("Name: " + x.child("Name").getValue());
