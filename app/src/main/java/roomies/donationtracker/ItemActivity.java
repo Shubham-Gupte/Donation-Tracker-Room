@@ -17,7 +17,8 @@ public class ItemActivity extends AppCompatActivity {
     EditText itemType;
     EditText donationLocation;
     EditText donationDate;
-    Switch adminSwitch;
+    String locationID = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ItemActivity.this, LocationActivity.class);
+                intent.putExtra("location_ID", locationID);
                 startActivity(i);
             }
         });
@@ -55,7 +57,11 @@ public class ItemActivity extends AppCompatActivity {
     private void getIncomingIntent() {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
-            getLocationItemsFromDB(locationID);
         }
+    }
+
+    //add item to firebase
+    private void addItemToDatabase(Item item) {
+        //creating the item
     }
 }
