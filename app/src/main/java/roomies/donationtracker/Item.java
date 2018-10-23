@@ -14,7 +14,6 @@ public class Item {
         this.donationDate = donationDate;
         this.donationLocation = donationLocation;
     }
-<<<<<<< HEAD
 
     public float getCost() {
         return cost;
@@ -54,45 +53,6 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
-=======
-    public String getItemName() {
-        return this.name;
     }
 
-    public String getItemType() {
-        return this.type;
-    }
-
-    public float getItemCost() {
-        return this.cost;
-    }
-
-    public String getItemDonateDate() {
-        return this.donationDate;
-    }
-
-    public String getItemDonateLocation() {
-        return this.donationLocation;
-    }
-
-    public void setItemName(String name) {
-        this.name = name;
-    }
-
-    public void setItemType(String type) {
-        this.type = type;
-    }
-
-    public void setItemCost(float cost) {
-        this.cost = cost;
-    }
-
-    public void setItemDonateDate(String date) {
-        this.donationDate = date;
-    }
-
-    public void setItemDonateLocation(String loc) {
-        this.donationLocation = loc;
->>>>>>> d6eadd55a2dc7bd83199dadb2281493814eedf6d
-    }
 }
