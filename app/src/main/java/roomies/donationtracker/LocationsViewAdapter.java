@@ -1,21 +1,44 @@
 package roomies.donationtracker;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdapter.ViewHolder> {
 
     // Variables
     private ArrayList<Location> locationsList;
+    private Context context;
 
-    public LocationsViewAdapter(ArrayList<Location> locations) {
+    public LocationsViewAdapter(Context context, ArrayList<Location> locations) {
         locationsList = locations;
+        this.context = context;
     }
 
     // Take the cell view from layout_location_cellon_cell.xml
@@ -28,9 +51,17 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
 
     // Set the views in each cell for the location
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         viewHolder.locationNameView.setText(locationsList.get(i).getLocationName());
         viewHolder.locationAddressView.setText(locationsList.get(i).getAddress());
+        viewHolder.locationNameView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), LocationActivity.class);
+                intent.putExtra("location_ID", locationsList.get(i).getLocationID());
+                context.startActivity(intent);
+            }
+        });
     }
 
     // Count how many cells the table needs
@@ -45,7 +76,7 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
         TextView locationAddressView;
         public ViewHolder(View itemView) {
             super(itemView);
-            locationNameView = itemView.findViewById(R.id.locationNameId);
+            locationNameView = itemView.findViewById(R.id.itemNameId);
             locationAddressView = itemView.findViewById(R.id.addressID);
         }
     }

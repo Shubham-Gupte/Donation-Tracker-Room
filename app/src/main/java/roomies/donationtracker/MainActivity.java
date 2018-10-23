@@ -27,14 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button itemScreenButton = findViewById(R.id.itemScreenButton);
-        itemScreenButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent x = new Intent(MainActivity.this, ItemActivity.class);
-                startActivity(x);
-            }
-        });
         initLogoutButton();
         getLocationsFromDB();
 
@@ -49,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     // Creates the locations view
     private void initLocationsView() {
         RecyclerView locationsView = findViewById(R.id.recyclerViewID);
-        LocationsViewAdapter locationsViewAdapter = new LocationsViewAdapter(locationsList);
+        LocationsViewAdapter locationsViewAdapter = new LocationsViewAdapter(this, locationsList);
         locationsView.setAdapter(locationsViewAdapter);
         locationsView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -100,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                             (String)x.child("City").getValue(),
                             (String)x.child("State").getValue(),
                             String.valueOf(x.child("Zip").getValue()),
-                            (String)x.child("Phone").getValue());
+                            (String)x.child("Phone").getValue(),
+                            x.getKey());
 
                     // Add new location to location list
                     locationsList.add(location);

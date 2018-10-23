@@ -9,21 +9,21 @@ public class Location {
     private String latitude;
     private String address;
     private String phoneNumber;
-    private int locationID;
+    private String locationID;
     private float revenue;
     // employees who work here
     private List<User> employees;
     private List<Object> itemList;
 
     public Location(String locationName, String locationType, String longitude, String latitude,
-                    String street, String city, String state, String zip, String phoneNumber) {
+                    String street, String city, String state, String zip, String phoneNumber, String locationID) {
         this.locationName = locationName;
         this.locationType = locationType;
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = street + ", " + city + ", " + state + ", " + zip;
         this.phoneNumber = phoneNumber;
-//        this.locationID = locationID;
+        this.locationID = locationID;
     }
 
     public String getLocationName() {
@@ -86,11 +86,11 @@ public class Location {
         return locationName + ": " + address;
     }
 
-    public int getLocationID() {
+    public String getLocationID() {
         return locationID;
     }
 
-    public void setLocationID(int locationID) {
+    public void setLocationID(String locationID) {
         this.locationID = locationID;
     }
 }
