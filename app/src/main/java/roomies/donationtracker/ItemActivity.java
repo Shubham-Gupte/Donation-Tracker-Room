@@ -47,7 +47,7 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ItemActivity.this, LocationActivity.class);
-                intent.putExtra("location_ID", locationID);
+                i.putExtra("location_ID", locationID);
                 startActivity(i);
             }
         });
