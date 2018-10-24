@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Map to use for creating location list
     ArrayList<Location> locationsList = new ArrayList<>();
+    String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initLogoutButton();
         getLocationsFromDB();
-
+        Intent myIntent = getIntent(); // gets the previously created intent
+        String type = myIntent.getStringExtra("userType");
+        userType = type;
     }
 
     @Override
@@ -101,8 +104,15 @@ public class MainActivity extends AppCompatActivity {
                     // Add new location to location list
                     locationsList.add(location);
                 }
+
+
                 // Initialize the locations view table
                 initLocationsView();
+                if(userType != null && userType.equals("location")) {
+                    Location obj = locationsList.get(0); // remember first item
+                    locationsList.clear(); // clear complete list
+                    locationsList.add(obj); // add first item
+                }
             }
 
             @Override

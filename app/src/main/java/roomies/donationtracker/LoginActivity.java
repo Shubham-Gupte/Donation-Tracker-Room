@@ -57,6 +57,14 @@ public class LoginActivity extends AppCompatActivity {
                             "Correct! Logging you in...", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
+                } else if(userInput.getText().toString().equals("cashier")) {
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("userType","cashier");
+                    startActivity(i);
+                } else if(userInput.getText().toString().equals("location")) {
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("userType","location");
+                    startActivity(i);
                 } else {
                     //incorrect
                     Toast.makeText(getApplicationContext(),
