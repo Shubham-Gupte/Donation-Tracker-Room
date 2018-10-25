@@ -1,9 +1,9 @@
-package roomies.donationtracker;
+package roomies.donationtracker.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,11 +17,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import roomies.donationtracker.adapters.LocationsViewAdapter;
+import roomies.donationtracker.models.Location;
+
 
 public class MainActivity extends AppCompatActivity {
 
     // Map to use for creating location list
     ArrayList<Location> locationsList = new ArrayList<>();
+    String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initLogoutButton();
         getLocationsFromDB();
-
+        Intent myIntent = getIntent(); // gets the previously created intent
+        String type = myIntent.getStringExtra("userType");
+        userType = type;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     // Creates the locations view
     private void initLocationsView() {
         RecyclerView locationsView = findViewById(R.id.recyclerViewID);
-        LocationsViewAdapter locationsViewAdapter = new LocationsViewAdapter(locationsList);
+        LocationsViewAdapter locationsViewAdapter = new LocationsViewAdapter(this, locationsList);
         locationsView.setAdapter(locationsViewAdapter);
         locationsView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -68,8 +74,10 @@ public class MainActivity extends AppCompatActivity {
         childReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                locationsList = new ArrayList<>();
                 // Iterate through data from database
                 for (DataSnapshot x : dataSnapshot.getChildren()) {
+
                     // Print database location info for debugging
                     /**
                      System.out.println("Name: " + x.child("Name").getValue());
@@ -92,13 +100,20 @@ public class MainActivity extends AppCompatActivity {
                             (String)x.child("City").getValue(),
                             (String)x.child("State").getValue(),
                             String.valueOf(x.child("Zip").getValue()),
-                            (String)x.child("Phone").getValue());
+                            (String)x.child("Phone").getValue(),
+                            x.getKey());
 
                     // Add new location to location list
                     locationsList.add(location);
                 }
+
                 // Initialize the locations view table
                 initLocationsView();
+                if(userType != null && userType.equals("location")) {
+                    Location obj = locationsList.get(0); // remember first item
+                    locationsList.clear(); // clear complete list
+                    locationsList.add(obj); // add first item
+                }
             }
 
             @Override

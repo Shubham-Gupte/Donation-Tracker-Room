@@ -1,4 +1,6 @@
-package roomies.donationtracker;
+package roomies.donationtracker.models;
+
+import java.util.List;
 
 public class Location {
     private String locationName;
@@ -7,20 +9,34 @@ public class Location {
     private String latitude;
     private String address;
     private String phoneNumber;
+    private String locationID;
+    private float revenue;
+    // employees who work here
+    private List<User> employees;
+    private List<Object> itemList;
 
     public Location(String locationName, String locationType, String longitude, String latitude,
-                    String street, String city, String state, String zip, String phoneNumber) {
+                    String street, String city, String state, String zip, String phoneNumber, String locationID) {
         this.locationName = locationName;
         this.locationType = locationType;
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = street + ", " + city + ", " + state + ", " + zip;
         this.phoneNumber = phoneNumber;
+        this.locationID = locationID;
     }
 
     public String getLocationName() {
         return locationName;
     }
+
+    public void setEmployees(List<User> employees) {this.employees = employees; }
+
+    public List<User> getEmployees() { return employees; }
+
+    public void setItemList(List<Object> itemList) {this.itemList = itemList; }
+
+    public List<Object> getItemList() { return itemList; }
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
@@ -68,5 +84,13 @@ public class Location {
 
     public String toString() {
         return locationName + ": " + address;
+    }
+
+    public String getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(String locationID) {
+        this.locationID = locationID;
     }
 }

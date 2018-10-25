@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,6 +56,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Correct! Logging you in...", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(i);
+                } else if(userInput.getText().toString().equals("cashier")) {
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("userType","cashier");
+                    startActivity(i);
+                } else if(userInput.getText().toString().equals("location")) {
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("userType","location");
                     startActivity(i);
                 } else {
                     //incorrect
