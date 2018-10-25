@@ -25,3 +25,6 @@ cache.properties.lock
 *.iws
 .gradle/
 **/.gradle/
+.gradle/4.4/fileHashes/fileHashes.lock
+.gradle/4.4/fileHashes/fileHashes.bin
+.idea/workspace.xml
