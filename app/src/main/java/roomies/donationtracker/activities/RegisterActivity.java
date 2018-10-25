@@ -1,9 +1,9 @@
 package roomies.donationtracker.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,12 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import roomies.donationtracker.R;
 
 
 public class RegisterActivity extends AppCompatActivity {

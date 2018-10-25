@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-import roomies.donationtracker.R;
-
 public class LoginActivity extends AppCompatActivity {
 
     // Views

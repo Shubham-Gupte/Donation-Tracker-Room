@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import roomies.donationtracker.R;
+import roomies.donationtracker.activities.R;
 import roomies.donationtracker.models.Item;
 
 public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.ViewHolder> {

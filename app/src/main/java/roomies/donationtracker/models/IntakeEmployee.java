@@ -1,7 +1,5 @@
 package roomies.donationtracker.models;
 
-import roomies.donationtracker.User;
-
 public class IntakeEmployee extends User {
     public void intakeItem(Object item) {}
     public void notifyManager(String message) {
