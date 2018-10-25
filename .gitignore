@@ -23,6 +23,7 @@ build/
 cache.properties.lock
 .idea/workspace.xml
 *.iws
+*.iml
 .gradle
 .gradle/
 **/.gradle/
