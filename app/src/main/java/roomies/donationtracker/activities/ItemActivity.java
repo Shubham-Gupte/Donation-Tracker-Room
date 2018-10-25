@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,13 +15,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import roomies.donationtracker.R;
+import roomies.donationtracker.models.Item;
+
 public class ItemActivity extends AppCompatActivity {
 
     //views
     EditText itemName;
     EditText itemCost;
     EditText itemType;
-    EditText donationLocation;
     EditText donationDate;
     String locationID = null;
     ArrayList<Item> firebaseList = null;
@@ -35,7 +37,6 @@ public class ItemActivity extends AppCompatActivity {
         itemCost = findViewById(R.id.itemCost);
         itemType = findViewById(R.id.type);
         donationDate = findViewById(R.id.itemName);
-        donationLocation = findViewById(R.id.itemType);
 
         initCancelButton();
         initAddButton();
@@ -59,10 +60,9 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ItemActivity.this, LocationActivity.class);
-
                 Item toAdd = new Item(itemName.getText().toString(), itemType.getText().toString(),
                         Float.parseFloat(itemCost.getText().toString()), donationDate.getText().toString(),
-                        donationLocation.getText().toString());
+                        locationID);
                 addItemToDatabase(toAdd);
                 startActivity(i);
             }
@@ -78,13 +78,9 @@ public class ItemActivity extends AppCompatActivity {
 
     //add item to firebase
     private void addItemToDatabase(final Item item) {
-        locationID = item.getDonationLocation();
-
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference locationsReference = mainDatabase.child("locations");
-        DatabaseReference childReference = locationsReference.child(locationID).child("itemList");
-        childReference.push().setValue(item);
-        //use the push or put command
+        DatabaseReference locationsReference = mainDatabase.child("locations").child(locationID);
+        locationsReference.push().setValue(item.getName());
     }
 
     private void setList(ArrayList<Item> in) {

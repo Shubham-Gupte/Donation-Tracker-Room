@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.HashMap;
+
+import roomies.donationtracker.R;
 
 public class LoginActivity extends AppCompatActivity {
 

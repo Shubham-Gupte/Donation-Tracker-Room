@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import roomies.donationtracker.R;
+import roomies.donationtracker.models.Item;
 
 public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.ViewHolder> {
 

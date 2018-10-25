@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.models;
 
 public class Item {
     private String type; //enum later

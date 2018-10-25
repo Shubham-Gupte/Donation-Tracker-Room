@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,6 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import roomies.donationtracker.R;
+import roomies.donationtracker.adapters.LocationsViewAdapter;
+import roomies.donationtracker.models.Location;
 
 
 public class MainActivity extends AppCompatActivity {

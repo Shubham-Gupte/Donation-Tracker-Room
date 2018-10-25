@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.models;
 
 import java.util.List;
 

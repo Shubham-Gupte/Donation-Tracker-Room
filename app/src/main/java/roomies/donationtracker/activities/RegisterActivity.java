@@ -1,4 +1,4 @@
-package roomies.donationtracker;
+package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import roomies.donationtracker.R;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -43,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        userList = LoginActivity.getUserList();
+        userList = roomies.donationtracker.activities.LoginActivity.getUserList();
 
         // Initialize views
         initUserType();
