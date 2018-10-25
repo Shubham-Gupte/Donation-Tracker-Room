@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemActivity"
+    tools:context=".AddItemActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
@@ -21,17 +21,13 @@
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Donation Date"
-        app:layout_constraintBottom_toTopOf="@+id/addItemButton"
+        android:hint="Donation Date"
+        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemType"
-        app:layout_constraintVertical_bias="0.392"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintTop_toBottomOf="@+id/type" />
 
     <EditText
         android:id="@+id/itemCost"
@@ -40,8 +36,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Cost"
+        android:hint="Cost"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemCost2" />
 
@@ -52,22 +48,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="21dp"
         android:ems="10"
+        android:hint="Item Name"
         android:inputType="textPersonName"
-        android:text="Item Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
-
-    <EditText
-        android:id="@+id/itemType"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Donation Location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
 
     <EditText
         android:id="@+id/type"
@@ -76,8 +60,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Type"
         android:inputType="textPersonName"
-        android:text="Type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemCost" />
 

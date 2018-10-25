@@ -32,10 +32,11 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
     // Set the views in each cell for the location
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.itemNameView.setText(itemsList.get(i).getName());
-        viewHolder.itemTypeView.setText(itemsList.get(i).getType());
-        viewHolder.itemCostView.setText(Float.toString(itemsList.get(i).getCost()));
-        viewHolder.itemDateDonatedView.setText(itemsList.get(i).getDonationDate());
+        Item item = itemsList.get(i);
+        viewHolder.itemNameView.setText(item.getName());
+        viewHolder.itemTypeView.setText(item.getType());
+        viewHolder.itemCostView.setText(Double.toString(item.getCost()));
+        viewHolder.itemDateDonatedView.setText(item.getDonationDate());
     }
 
     // Count how many cells the table needs
@@ -53,7 +54,7 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
         public ViewHolder(View itemView) {
             super(itemView);
             itemNameView = itemView.findViewById(R.id.itemNameId);
-            itemTypeView = itemView.findViewById(R.id.itemType);
+            itemTypeView = itemView.findViewById(R.id.itemTypeId);
             itemCostView = itemView.findViewById(R.id.itemCostId);
             itemDateDonatedView = itemView.findViewById(R.id.dateDonatedId);
         }

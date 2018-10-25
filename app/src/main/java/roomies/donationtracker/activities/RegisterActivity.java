@@ -46,8 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Initialize views
         initUserType();
-        initAdminSwitch();
         initRegisterButton();
+        initAdminSwitch();
         initcancelRegistrationButton();
 
     }
@@ -74,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initAdminSwitch() {
         adminSwitch = findViewById(R.id.adminSwitch);
+        adminKey = findViewById(R.id.adminAuthentication);
         adminSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import roomies.donationtracker.activities.LocationActivity;
+import roomies.donationtracker.activities.LocationDetailsActivity;
 import roomies.donationtracker.activities.R;
 import roomies.donationtracker.models.Location;
 
@@ -42,7 +42,7 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
         viewHolder.locationNameView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), LocationActivity.class);
+                Intent intent = new Intent(v.getContext(), LocationDetailsActivity.class);
                 intent.putExtra("location_ID", locationsList.get(i).getLocationID());
                 context.startActivity(intent);
             }

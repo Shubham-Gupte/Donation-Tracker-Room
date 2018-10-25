@@ -2,12 +2,12 @@ package roomies.donationtracker.models;
 
 public class Item {
     private String type; //enum later
-    private float cost;
+    private double cost;
     private String donationDate;
     private String donationLocation;
     private String name;
 
-    public Item (String name, String type, float cost, String donationDate, String donationLocation) {
+    public Item (String name, String type, double cost, String donationDate, String donationLocation) {
         this.name = name;
         this.type = type;
         this.cost = cost;
@@ -15,11 +15,11 @@ public class Item {
         this.donationLocation = donationLocation;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 

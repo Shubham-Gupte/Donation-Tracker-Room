@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                     locationsList.add(location);
                 }
 
-
                 // Initialize the locations view table
                 initLocationsView();
                 if(userType != null && userType.equals("location")) {

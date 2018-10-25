@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import roomies.donationtracker.models.Item;
 
-public class ItemActivity extends AppCompatActivity {
+public class AddItemActivity extends AppCompatActivity {
 
     //views
     EditText itemName;
@@ -27,7 +27,7 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item);
+        setContentView(R.layout.activity_add_item);
 
         itemName = findViewById(R.id.itemCost2);
         itemCost = findViewById(R.id.itemCost);
@@ -44,7 +44,8 @@ public class ItemActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ItemActivity.this, LocationActivity.class);
+                Intent i = new Intent(AddItemActivity.this, LocationDetailsActivity.class);
+                i.putExtra("location_ID", locationID);
                 startActivity(i);
             }
         });
@@ -55,11 +56,12 @@ public class ItemActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ItemActivity.this, LocationActivity.class);
                 Item toAdd = new Item(itemName.getText().toString(), itemType.getText().toString(),
-                        Float.parseFloat(itemCost.getText().toString()), donationDate.getText().toString(),
+                        Float.valueOf(itemCost.getText().toString()), donationDate.getText().toString(),
                         locationID);
                 addItemToDatabase(toAdd);
+                Intent i = new Intent(AddItemActivity.this, LocationDetailsActivity.class);
+                i.putExtra("location_ID", locationID);
                 startActivity(i);
             }
         });
@@ -75,8 +77,8 @@ public class ItemActivity extends AppCompatActivity {
     //add item to firebase
     private void addItemToDatabase(final Item item) {
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference locationsReference = mainDatabase.child("locations").child(locationID);
-        locationsReference.push().setValue(item.getName());
+        DatabaseReference locationsReference = mainDatabase.child("locations").child(locationID).child("Items");
+        locationsReference.push().setValue(item);
     }
 
     private void setList(ArrayList<Item> in) {

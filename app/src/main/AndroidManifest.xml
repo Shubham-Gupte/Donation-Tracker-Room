@@ -30,14 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LocationActivity">
+        <activity android:name=".LocationDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ItemActivity">
+        <activity android:name=".AddItemActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
