@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initLogoutButton();
+        initSearchButton();
         getLocationsFromDB();
         Intent myIntent = getIntent(); // gets the previously created intent
         String type = myIntent.getStringExtra("userType");
@@ -62,7 +63,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
+    // Creates the search button
+    private void initSearchButton() {
+        Button searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     // Gets the locations from firebase and initializes the locations view
