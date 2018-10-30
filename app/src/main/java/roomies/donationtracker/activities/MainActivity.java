@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initLogoutButton();
+        initItemButton();
+        initMapButton();
         getLocationsFromDB();
         Intent myIntent = getIntent(); // gets the previously created intent
         String type = myIntent.getStringExtra("userType");
@@ -43,6 +45,31 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         getLocationsFromDB();
     }
+
+    //create view all items button
+    private void initItemButton() {
+        Button itemButton = findViewById(R.id.itemButton);
+        itemButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ItemsActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    //create map button
+    private void initMapButton() {
+        Button mapButton = findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
 
     // Creates the locations view
     private void initLocationsView() {
