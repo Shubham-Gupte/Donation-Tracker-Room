@@ -37,6 +37,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_details);
         initDoneButton();
+        initSearchButton();
         initAddItemButton();
         getIncomingIntent();
     }
@@ -68,7 +69,19 @@ public class LocationDetailsActivity extends AppCompatActivity {
         });
     }
 
-    // Creates the logout button
+    // Creates the search list
+    private void initSearchButton() {
+        Button doneButton = findViewById(R.id.searchButtonID);
+        doneButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LocationDetailsActivity.this, searchActivity.class);
+                i.putExtra("location_ID", locationID);
+                i.putExtra("itemslist", itemsList);
+                startActivity(i);
+            }
+        });
+    }
     private void initAddItemButton() {
         Button doneButton = findViewById(R.id.addItemButtonID);
         doneButton.setOnClickListener(new View.OnClickListener(){

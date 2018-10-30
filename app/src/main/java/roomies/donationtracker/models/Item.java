@@ -1,6 +1,9 @@
 package roomies.donationtracker.models;
 
-public class Item {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Item implements Parcelable {
     private String type; //enum later
     private double cost;
     private String donationDate;
@@ -53,6 +56,28 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.type);
+        dest.writeString(this.name);
+        dest.writeString(this.donationLocation);
+        dest.writeString(this.donationDate);
+        dest.writeDouble(this.cost);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public Item(Parcel in){
+        this.type = in.readString();
+        this.name = in.readString();
+        this.donationLocation =  in.readString();
+        this.donationDate =  in.readString();
+        this.cost =  in.readDouble();
     }
 
 }
