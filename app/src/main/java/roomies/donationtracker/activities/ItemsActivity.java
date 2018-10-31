@@ -30,6 +30,7 @@ public class ItemsActivity extends Activity {
 
     // Map to use for creating location list
     ArrayList<Item> itemsList = new ArrayList<>();
+    ArrayList<Item> allItemsList = new ArrayList<>();
     Location location = null;
     String locationID = null;
 
@@ -64,29 +65,26 @@ public class ItemsActivity extends Activity {
     private void filter(String s) {
         ArrayList<Item> filteredItems = new ArrayList<>();
 
-
         ToggleButton category = findViewById(R.id.categoryButtonId);
         if (category.isChecked()) { //if category is checked it means searching by type
-            for (Item originalItem: itemsList) {
+            for (Item originalItem: allItemsList) {
                 if (originalItem.getType().toLowerCase().contains(s.toLowerCase())) {
                     filteredItems.add(originalItem);
                 }
             }
         } else { //category not checked meaning search by name
-            for (Item originalItem: itemsList) {
+            for (Item originalItem: allItemsList) {
                 if (originalItem.getName().toLowerCase().contains(s.toLowerCase())) {
                     filteredItems.add(originalItem);
                 }
             }
         }
         //updates the recycler view
-        ItemsViewAdapter a = new ItemsViewAdapter(filteredItems);
-        RecyclerView itemsView = findViewById(R.id.recyclerViewID);
-        itemsView.setAdapter(a);
-        itemsView.setLayoutManager(new LinearLayoutManager(this));
-
-
+        itemsList = filteredItems;
+        initItemsView();
     }
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -201,11 +199,12 @@ public class ItemsActivity extends Activity {
                         Item item = new Item(name, type, cost, donationDate, donationLocation);
 
                         //Add new item to item list
-                        itemsList.add(item);
+                        allItemsList.add(item);
                     }
                 }
 
                 // Initialize the locations view table
+                itemsList = allItemsList;
                 initItemsView();
             }
 
