@@ -124,29 +124,6 @@ public class ItemsActivity extends Activity {
         itemsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    // Creates the logout button
-    private void initLocationDetails() {
-        TextView nameLabel = findViewById(R.id.nameLableId);
-        nameLabel.setText(location.getLocationName());
-
-        TextView typeLabel = findViewById(R.id.typeLableId);
-        typeLabel.setText(location.getLocationType());
-
-        TextView addressLabel = findViewById(R.id.addressLableId);
-        addressLabel.setText(location.getAddress());
-
-        TextView phoneLabel = findViewById(R.id.phoneLableId);
-        phoneLabel.setText(location.getPhoneNumber());
-
-        TextView longLabel = findViewById(R.id.longLableId);
-        longLabel.setText(location.getLongitude());
-
-        TextView latLabel = findViewById(R.id.latLableId);
-        latLabel.setText(location.getLatitude());
-
-    }
-
-
     // Gets the locations from firebase and initializes the locations view
     private void getLocationItemsFromDB(String locationID) {
         // Firebase connection reference
