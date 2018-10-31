@@ -98,6 +98,8 @@ public class ItemsActivity extends Activity {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
             getLocationItemsFromDB(locationID);
+        } else {
+            getAllItemsFromDB();
         }
     }
 
@@ -181,6 +183,51 @@ public class ItemsActivity extends Activity {
                     //Add new item to item list
                     itemsList.add(item);
                 }
+                // Initialize the locations view table
+                initItemsView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+    }
+
+    // Gets the locations from firebase and initializes the locations view
+    private void getAllItemsFromDB() {
+        // Firebase connection reference
+        DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference childReference = mainDatabase.child("locations");
+
+        childReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                itemsList = new ArrayList<>();
+                // Iterate through data from database
+                for (DataSnapshot x : dataSnapshot.getChildren()) {
+                        DataSnapshot items = x.child("Items");
+                    for (DataSnapshot y : items.getChildren()) {
+                        // Create a new item object from database data
+                        String name = y.child("name").getValue().toString();
+                        String type = y.child("type").getValue().toString();
+                        double cost = 0;
+                        Object costObject = y.child("cost").getValue();
+                        if ( costObject instanceof Long) {
+                            cost = ((Long) costObject).doubleValue();
+                        } else {
+                            cost = (double) costObject;
+                        }
+                        String donationDate = y.child("donationDate").getValue().toString();
+                        String donationLocation = y.child("donationLocation").getValue().toString();
+
+                        Item item = new Item(name, type, cost, donationDate, donationLocation);
+
+                        //Add new item to item list
+                        itemsList.add(item);
+                    }
+                }
+
                 // Initialize the locations view table
                 initItemsView();
             }
