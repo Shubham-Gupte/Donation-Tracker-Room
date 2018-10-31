@@ -6,9 +6,13 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,8 +41,52 @@ public class ItemsActivity extends Activity {
         setContentView(R.layout.activity_items);
         initAddItemButton();
         getIncomingIntent();
+        EditText searchField = findViewById(R.id.searchBarId);
+        //checks to see if somebody puts stuff into the textbox
+        searchField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
+    private void filter(String s) {
+        ArrayList<Item> filteredItems = new ArrayList<>();
+
+
+        ToggleButton category = findViewById(R.id.categoryButtonId);
+        if (category.isChecked()) { //if category is checked it means searching by type
+            for (Item originalItem: itemsList) {
+                if (originalItem.getType().toLowerCase().contains(s.toLowerCase())) {
+                    filteredItems.add(originalItem);
+                }
+            }
+        } else { //category not checked meaning search by name
+            for (Item originalItem: itemsList) {
+                if (originalItem.getName().toLowerCase().contains(s.toLowerCase())) {
+                    filteredItems.add(originalItem);
+                }
+            }
+        }
+        //updates the recycler view
+        ItemsViewAdapter a = new ItemsViewAdapter(filteredItems);
+        RecyclerView itemsView = findViewById(R.id.recyclerViewID);
+        itemsView.setAdapter(a);
+        itemsView.setLayoutManager(new LinearLayoutManager(this));
+
+
+    }
     @Override
     protected void onStart() {
         super.onStart();
