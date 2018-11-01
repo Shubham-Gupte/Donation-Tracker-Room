@@ -31,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initialize buttons
         initLogoutButton();
         initItemButton();
         initMapButton();
         getLocationsFromDB();
+
+        //gets usertype
         Intent myIntent = getIntent(); // gets the previously created intent
         String type = myIntent.getStringExtra("userType");
         userType = type;
@@ -121,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
                     // Create a new location object from database data
                     Location location = new Location((String)x.child("Name").getValue(),
                             (String)x.child("Type").getValue(),
-                            String.valueOf(x.child("Longitude").getValue()),
-                            String.valueOf(x.child("Latitude").getValue()),
+                            (double) x.child("Longitude").getValue(),
+                            (double) x.child("Latitude").getValue(),
                             (String)x.child("Street Address").getValue(),
                             (String)x.child("City").getValue(),
                             (String)x.child("State").getValue(),

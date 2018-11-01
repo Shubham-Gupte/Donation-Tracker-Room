@@ -5,8 +5,8 @@ import java.util.List;
 public class Location {
     private String locationName;
     private String locationType; // should change this to an enum later
-    private String longitude;
-    private String latitude;
+    private double longitude;
+    private double latitude;
     private String address;
     private String phoneNumber;
     private String locationID;
@@ -15,7 +15,7 @@ public class Location {
     private List<User> employees;
     private List<Object> itemList;
 
-    public Location(String locationName, String locationType, String longitude, String latitude,
+    public Location(String locationName, String locationType, double longitude, double latitude,
                     String street, String city, String state, String zip, String phoneNumber, String locationID) {
         this.locationName = locationName;
         this.locationType = locationType;
@@ -50,19 +50,19 @@ public class Location {
         this.locationType = locationType;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
