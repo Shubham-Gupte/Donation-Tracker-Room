@@ -89,10 +89,10 @@ public class ItemsActivity extends Activity {
         phoneLabel.setText(location.getPhoneNumber());
 
         TextView longLabel = findViewById(R.id.longLableId);
-        longLabel.setText(location.getLongitude());
+        longLabel.setText(String.valueOf(location.getLongitude()));
 
         TextView latLabel = findViewById(R.id.latLableId);
-        latLabel.setText(location.getLatitude());
+        latLabel.setText(String.valueOf(location.getLatitude()));
 
     }
 

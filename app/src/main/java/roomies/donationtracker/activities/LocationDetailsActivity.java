@@ -96,10 +96,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
         phoneLabel.setText(location.getPhoneNumber());
 
         TextView longLabel = findViewById(R.id.longLableId);
-        longLabel.setText(location.getLongitude());
+        longLabel.setText(String.valueOf(location.getLongitude()));
 
         TextView latLabel = findViewById(R.id.latLableId);
-        latLabel.setText(location.getLatitude());
+        latLabel.setText(String.valueOf(location.getLatitude()));
 
     }
 
@@ -132,8 +132,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
                     // Create a new location object from database data
                     location = new Location((String)dataSnapshot.child("Name").getValue(),
                             (String)dataSnapshot.child("Type").getValue(),
-                            String.valueOf(dataSnapshot.child("Longitude").getValue()),
-                            String.valueOf(dataSnapshot.child("Latitude").getValue()),
+                            (double) dataSnapshot.child("Longitude").getValue(),
+                            (double) dataSnapshot.child("Latitude").getValue(),
                             (String)dataSnapshot.child("Street Address").getValue(),
                             (String)dataSnapshot.child("City").getValue(),
                             (String)dataSnapshot.child("State").getValue(),
