@@ -61,8 +61,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         doneButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LocationDetailsActivity.this, MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
     }

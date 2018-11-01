@@ -44,9 +44,7 @@ public class AddItemActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AddItemActivity.this, LocationDetailsActivity.class);
-                i.putExtra("location_ID", locationID);
-                startActivity(i);
+                finish();
             }
         });
     }

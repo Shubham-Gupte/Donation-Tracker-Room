@@ -6,9 +6,13 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +30,7 @@ public class ItemsActivity extends Activity {
 
     // Map to use for creating location list
     ArrayList<Item> itemsList = new ArrayList<>();
+    ArrayList<Item> allItemsList = new ArrayList<>();
     Location location = null;
     String locationID = null;
 
@@ -37,7 +42,48 @@ public class ItemsActivity extends Activity {
         setContentView(R.layout.activity_items);
         initAddItemButton();
         getIncomingIntent();
+        EditText searchField = findViewById(R.id.searchBarId);
+        //checks to see if somebody puts stuff into the textbox
+        searchField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
+
+    private void filter(String s) {
+        ArrayList<Item> filteredItems = new ArrayList<>();
+
+        ToggleButton category = findViewById(R.id.categoryButtonId);
+        if (category.isChecked()) { //if category is checked it means searching by type
+            for (Item originalItem: allItemsList) {
+                if (originalItem.getType().toLowerCase().contains(s.toLowerCase())) {
+                    filteredItems.add(originalItem);
+                }
+            }
+        } else { //category not checked meaning search by name
+            for (Item originalItem: allItemsList) {
+                if (originalItem.getName().toLowerCase().contains(s.toLowerCase())) {
+                    filteredItems.add(originalItem);
+                }
+            }
+        }
+        //updates the recycler view
+        itemsList = filteredItems;
+        initItemsView();
+    }
+
 
     @Override
     protected void onStart() {
@@ -50,6 +96,8 @@ public class ItemsActivity extends Activity {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
             getLocationItemsFromDB(locationID);
+        } else {
+            getAllItemsFromDB();
         }
     }
 
@@ -74,6 +122,7 @@ public class ItemsActivity extends Activity {
         itemsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+<<<<<<< HEAD
     // Creates the logout button
     private void initLocationDetails() {
         TextView nameLabel = findViewById(R.id.nameLableId);
@@ -97,6 +146,8 @@ public class ItemsActivity extends Activity {
     }
 
 
+=======
+>>>>>>> c89ce456283658d9787d6a6488b4f456f734918e
     // Gets the locations from firebase and initializes the locations view
     private void getLocationItemsFromDB(String locationID) {
         // Firebase connection reference
@@ -134,6 +185,52 @@ public class ItemsActivity extends Activity {
                     itemsList.add(item);
                 }
                 // Initialize the locations view table
+                initItemsView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+    }
+
+    // Gets the locations from firebase and initializes the locations view
+    private void getAllItemsFromDB() {
+        // Firebase connection reference
+        DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference childReference = mainDatabase.child("locations");
+
+        childReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                itemsList = new ArrayList<>();
+                // Iterate through data from database
+                for (DataSnapshot x : dataSnapshot.getChildren()) {
+                        DataSnapshot items = x.child("Items");
+                    for (DataSnapshot y : items.getChildren()) {
+                        // Create a new item object from database data
+                        String name = y.child("name").getValue().toString();
+                        String type = y.child("type").getValue().toString();
+                        double cost = 0;
+                        Object costObject = y.child("cost").getValue();
+                        if ( costObject instanceof Long) {
+                            cost = ((Long) costObject).doubleValue();
+                        } else {
+                            cost = (double) costObject;
+                        }
+                        String donationDate = y.child("donationDate").getValue().toString();
+                        String donationLocation = y.child("donationLocation").getValue().toString();
+
+                        Item item = new Item(name, type, cost, donationDate, donationLocation);
+
+                        //Add new item to item list
+                        allItemsList.add(item);
+                    }
+                }
+
+                // Initialize the locations view table
+                itemsList = allItemsList;
                 initItemsView();
             }
 
