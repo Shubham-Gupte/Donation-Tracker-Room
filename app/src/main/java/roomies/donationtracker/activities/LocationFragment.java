@@ -17,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import roomies.donationtracker.R;
 import roomies.donationtracker.activities.dummy.DummyContent;
 import roomies.donationtracker.activities.dummy.DummyContent.DummyItem;
 import roomies.donationtracker.adapters.LocationsViewAdapter;
