@@ -52,10 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(33.78, -84.4);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Atlanta"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        addLocations(locationsList);
     }
 
     // Gets the locations from firebase and adds to locations list
@@ -95,10 +94,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String.valueOf(x.child("Zip").getValue()),
                             (String)x.child("Phone").getValue(),
                             x.getKey());
-
                     // Add new location to location list
                     locationsList.add(location);
                 }
+                addLocations(locationsList);
             }
 
             @Override
