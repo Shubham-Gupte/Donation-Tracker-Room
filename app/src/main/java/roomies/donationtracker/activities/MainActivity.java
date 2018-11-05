@@ -1,5 +1,7 @@
 package roomies.donationtracker.activities;
 
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,8 +33,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initialize tabbed view
+//        initActionBar();
+
+
+        //initialize buttons
         initLogoutButton();
+        initItemButton();
+        initMapButton();
         getLocationsFromDB();
+
+        //gets usertype
         Intent myIntent = getIntent(); // gets the previously created intent
         String type = myIntent.getStringExtra("userType");
         userType = type;
@@ -43,6 +55,57 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         getLocationsFromDB();
     }
+
+    //create view all items button
+    private void initItemButton() {
+        Button itemButton = findViewById(R.id.itemButton);
+        itemButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ItemsActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    //create map button
+    private void initMapButton() {
+        Button mapButton = findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+//    //create action bar with multiple fragments
+//    private void initActionBar() {
+//        final ActionBar actionBar = getActionBar();
+//        actionBar.setNavigationMode(actionBar.NAVIGATION_MODE_TABS);
+//        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+//            @Override
+//            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+//                //when you select the tab, show the appropriate fragment
+//            }
+//
+//            @Override
+//            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+//                //when you unselect the tab
+//            }
+//
+//            @Override
+//            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+//
+//            }
+//        };
+//
+//        actionBar.addTab(actionBar.newTab().setText("List").setTabListener(tabListener));
+//        actionBar.addTab(actionBar.newTab().setText("Map").setTabListener(tabListener));
+//    }
+
+
 
     // Creates the locations view
     private void initLocationsView() {
@@ -58,8 +121,7 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
@@ -94,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
                     // Create a new location object from database data
                     Location location = new Location((String)x.child("Name").getValue(),
                             (String)x.child("Type").getValue(),
-                            String.valueOf(x.child("Longitude").getValue()),
-                            String.valueOf(x.child("Latitude").getValue()),
+                            (double) x.child("Longitude").getValue(),
+                            (double) x.child("Latitude").getValue(),
                             (String)x.child("Street Address").getValue(),
                             (String)x.child("City").getValue(),
                             (String)x.child("State").getValue(),

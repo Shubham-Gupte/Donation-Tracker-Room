@@ -37,7 +37,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_details);
         initDoneButton();
-        initAddItemButton();
+        initViewItemsButton();
         getIncomingIntent();
     }
 
@@ -52,7 +52,6 @@ public class LocationDetailsActivity extends AppCompatActivity {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
             getLocationsFromDB();
-            getLocationItemsFromDB(locationID);
         }
     }
 
@@ -62,31 +61,23 @@ public class LocationDetailsActivity extends AppCompatActivity {
         doneButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LocationDetailsActivity.this, MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
     }
 
     // Creates the logout button
-    private void initAddItemButton() {
-        Button doneButton = findViewById(R.id.addItemButtonID);
+    private void initViewItemsButton() {
+        Button doneButton = findViewById(R.id.viewItemButtonID
+        );
         doneButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LocationDetailsActivity.this, AddItemActivity.class);
+                Intent i = new Intent(LocationDetailsActivity.this, ItemsActivity.class);
                 i.putExtra("location_ID", locationID);
                 startActivity(i);
             }
         });
-    }
-
-    // Creates the locations view
-    private void initItemsView() {
-        RecyclerView itemsView = findViewById(R.id.recyclerViewID);
-        ItemsViewAdapter itemsViewAdapter = new ItemsViewAdapter(itemsList);
-        itemsView.setAdapter(itemsViewAdapter);
-        itemsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     // Creates the logout button
@@ -104,60 +95,14 @@ public class LocationDetailsActivity extends AppCompatActivity {
         phoneLabel.setText(location.getPhoneNumber());
 
         TextView longLabel = findViewById(R.id.longLableId);
-        longLabel.setText(location.getLongitude());
+        longLabel.setText(String.valueOf(location.getLongitude()));
 
         TextView latLabel = findViewById(R.id.latLableId);
-        latLabel.setText(location.getLatitude());
+        latLabel.setText(String.valueOf(location.getLatitude()));
 
     }
 
 
-    // Gets the locations from firebase and initializes the locations view
-    private void getLocationItemsFromDB(String locationID) {
-        // Firebase connection reference
-        DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference childReference = mainDatabase.child("locations").child(locationID).child("Items");
-
-        childReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                itemsList = new ArrayList<>();
-                // Iterate through data from database
-                for (DataSnapshot x : dataSnapshot.getChildren()) {
-//                    System.out.println(x.child("name").getValue().toString());
-//                    System.out.println(x.child("cost").getValue().toString());
-//                    System.out.println(x.child("donationDate").getValue().toString());
-//                    System.out.println(x.child("donationLocation").getValue().toString());
-//                    System.out.println(x.child("type").getValue().toString());
-
-                    // Create a new item object from database data
-                    String name = x.child("name").getValue().toString();
-                    String type = x.child("type").getValue().toString();
-                    double cost = 0;
-                    Object costObject = x.child("cost").getValue();
-                    if ( costObject instanceof Long) {
-                        cost = ((Long) costObject).doubleValue();
-                    } else {
-                        cost = (double) costObject;
-                    }
-                    String donationDate = x.child("donationDate").getValue().toString();
-                    String donationLocation = x.child("donationLocation").getValue().toString();
-
-                    Item item = new Item(name, type, cost, donationDate, donationLocation);
-
-                     //Add new item to item list
-                    itemsList.add(item);
-                }
-                // Initialize the locations view table
-                initItemsView();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-    }
 
     // Gets the locations from firebase and initializes the locations view
     private void getLocationsFromDB() {
@@ -186,8 +131,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
                     // Create a new location object from database data
                     location = new Location((String)dataSnapshot.child("Name").getValue(),
                             (String)dataSnapshot.child("Type").getValue(),
-                            String.valueOf(dataSnapshot.child("Longitude").getValue()),
-                            String.valueOf(dataSnapshot.child("Latitude").getValue()),
+                            (double) dataSnapshot.child("Longitude").getValue(),
+                            (double) dataSnapshot.child("Latitude").getValue(),
                             (String)dataSnapshot.child("Street Address").getValue(),
                             (String)dataSnapshot.child("City").getValue(),
                             (String)dataSnapshot.child("State").getValue(),

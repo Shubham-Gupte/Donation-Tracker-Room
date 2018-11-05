@@ -65,8 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         cancelRegistrationButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(i);
+                finish();
             }
         });
     }
@@ -106,8 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
                         userList.put(user.getText().toString(), password.getText().toString());
                         LoginActivity.setUserList(userList);
-                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(i);
+                        finish();
                     } else {
                         AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
                         fail.setTitle("Registration");

@@ -59,4 +59,9 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
             itemDateDonatedView = itemView.findViewById(R.id.dateDonatedId);
         }
     }
+
+    public void filterList(ArrayList<Item> filteredList) {
+        itemsList = filteredList;
+        notifyDataSetChanged();
+    }
 }
