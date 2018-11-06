@@ -2,6 +2,7 @@ package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,22 +37,18 @@ public class RegisterActivity extends AppCompatActivity {
     Switch adminSwitch;
     EditText adminKey;
     Spinner userType;
-    List<String> spinnerArray = Arrays.asList("Intake Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier");
+    List<String> spinnerArray = Arrays.asList("Intake Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier", "Admin");
 
     // Variables
     String key = "testKey123";
-    static HashMap userList;
-
-    public static HashMap<String, String> getUserList() {
-        return userList;
-    }
+    private FirebaseAuth auth;
+    private DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        userList = roomies.donationtracker.activities.LoginActivity.getUserList();
+        auth = FirebaseAuth.getInstance();
 
         // Initialize views
         initUserType();
@@ -71,6 +77,24 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private void firebaseRegister(final String username, String password, final String userType) {
+        auth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    //add it to the database with the user id and user type
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        });
+        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference usersReference = mainDatabase.child("users").child(userUID);
+        usersReference.push().setValue(userType);
+    }
 
     private void initAdminSwitch() {
         adminSwitch = findViewById(R.id.adminSwitch);
@@ -99,35 +123,30 @@ public class RegisterActivity extends AppCompatActivity {
                 password = findViewById(R.id.editPassword);
                 confirmPassword = findViewById(R.id.editPassword2);
                 adminKey = findViewById(R.id.adminAuthentication);
-//                userType = (Spinner) findViewbyId(R.id.spinner);
-
-
-                if (adminKey.getVisibility() == View.GONE) {
+                userType = findViewById(R.id.spinner);
                     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
-                        userList.put(user.getText().toString(), password.getText().toString());
-                        LoginActivity.setUserList(userList);
-                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(i);
-                    } else {
-                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
-                        fail.setTitle("Registration");
-                        fail.setMessage("Passwords do not Match!");
-                        fail.show();
-                    }
-                } else {
-                    if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
-                            adminKey.getText().toString().equals(key)) {
-                        userList.put(user.getText().toString(), password.getText().toString());
-                        LoginActivity.setUserList(userList);
+                        String userTypeString = userType.getSelectedItem().toString();
+                        if (userTypeString.equals("Admin")) {
+                            // verify admin key
+                            if (adminKey.getText().toString().equals(key)) {
+                                firebaseRegister(user.getText().toString(), password.getText().toString(), userTypeString);
+                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(i);
+                                // register admin
+                            } else {
+                                //deny
+                                AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
+                                fail.setTitle("Registration");
+                                fail.setMessage("Admin Password is wrong!");
+                                fail.show();
+                            }
 
-                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-
-                        startActivity(i);
-                    } else if (password.getText().toString().equals(confirmPassword.getText().toString())) {
-                        AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
-                        fail.setTitle("Registration");
-                        fail.setMessage("Admin Authentication incorrect!");
-                        fail.show();
+                        } else {
+                            // just register user
+                            firebaseRegister(user.getText().toString(), password.getText().toString(), userTypeString);
+                            Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(i);
+                        }
                     } else {
                         AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
                         fail.setTitle("Registration");
@@ -135,7 +154,6 @@ public class RegisterActivity extends AppCompatActivity {
                         fail.show();
                     }
                 }
-            }
         });
     }
 }

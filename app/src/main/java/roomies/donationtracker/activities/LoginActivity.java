@@ -28,13 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // User list setup
-        userList = new HashMap<String, String>();
-        if (userList.isEmpty()) {
-            userList = RegisterActivity.getUserList();
-        }
-        if (userList == null) {
-            userList = new HashMap<String, String>();
-        }
 
         // Initialize views
         initUsernameInput();
