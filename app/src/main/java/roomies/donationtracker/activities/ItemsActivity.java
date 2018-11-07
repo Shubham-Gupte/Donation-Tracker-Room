@@ -205,7 +205,7 @@ public class ItemsActivity extends Activity {
                     // Create a new item object from database data
                     String name = x.child("name").getValue().toString();
                     String type = x.child("type").getValue().toString();
-                    double cost = 0;
+                    double cost;
                     Object costObject = x.child("cost").getValue();
                     if ( costObject instanceof Long) {
                         cost = ((Long) costObject).doubleValue();
@@ -252,7 +252,7 @@ public class ItemsActivity extends Activity {
                         // Create a new item object from database data
                         String name = y.child("name").getValue().toString();
                         String type = y.child("type").getValue().toString();
-                        double cost = 0;
+                        double cost;
                         Object costObject = y.child("cost").getValue();
                         if ( costObject instanceof Long) {
                             cost = ((Long) costObject).doubleValue();
