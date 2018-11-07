@@ -77,20 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 locationsList = new ArrayList<>();
                 // Iterate through data from database
                 for (DataSnapshot x : dataSnapshot.getChildren()) {
-
-                    // Print database location info for debugging
-                    /**
-                     System.out.println("Name: " + x.child("Name").getValue());
-                     System.out.println("Type: " + x.child("Type").getValue());
-                     System.out.println("Longitude: " + x.child("Longitude").getValue());
-                     System.out.println("Latitude: " + x.child("Latitude").getValue());
-                     System.out.println("Street Address: " + x.child("Street Address").getValue());
-                     System.out.println("City: " + x.child("City").getValue());
-                     System.out.println("State: " + x.child("State").getValue());
-                     System.out.println("Zip: " + x.child("Zip").getValue());
-                     System.out.println("Phone: " + x.child("Phone").getValue());
-                     **/
-
                     // Create a new location object from database data
                     Location location = new Location((String)x.child("Name").getValue(),
                             (String)x.child("Type").getValue(),

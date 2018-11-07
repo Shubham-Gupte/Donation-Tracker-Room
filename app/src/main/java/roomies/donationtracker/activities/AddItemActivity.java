@@ -24,6 +24,10 @@ public class AddItemActivity extends AppCompatActivity {
     String locationID = null;
     ArrayList<Item> firebaseList = null;
 
+    /**
+     * This is the onCreate method for our Add Item Activity, runs on the first instance
+     * @param savedInstanceState updates every time an intent is acted upon
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,9 @@ public class AddItemActivity extends AppCompatActivity {
         getIncomingIntent();
     }
 
+    /**
+     * Initializes Cancel button fin the view, also assigns its click function
+     */
     private void initCancelButton() {
         Button cancel = findViewById(R.id.cancelButton);
         cancel.setOnClickListener(new View.OnClickListener(){
@@ -50,7 +57,9 @@ public class AddItemActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Initializes Add button fin the view, also assigns its click function
+     */
     private void initAddButton() {
         Button addButton = findViewById(R.id.addItemButton);
         addButton.setOnClickListener(new View.OnClickListener(){
@@ -67,24 +76,37 @@ public class AddItemActivity extends AppCompatActivity {
         });
     }
 
-    // Gets the location ID sent with the intent
+    /**
+     * Gets the location ID sent with the intent
+     */
     private void getIncomingIntent() {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
         }
     }
 
-    //add item to firebase
+    /**
+     * Method to add item to firebase
+     * @param item The method to add
+     */
     private void addItemToDatabase(final Item item) {
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference locationsReference = mainDatabase.child("locations").child(locationID).child("Items");
         locationsReference.push().setValue(item);
     }
 
+    /**
+     * Sets the list of items to list
+     * @param in the list of items
+     */
     private void setList(ArrayList<Item> in) {
         this.firebaseList = in;
     }
 
+    /**
+     * Gets the list of items
+     * @return list of items
+     */
     private ArrayList<Item> getList() {
         return this.firebaseList;
     }
