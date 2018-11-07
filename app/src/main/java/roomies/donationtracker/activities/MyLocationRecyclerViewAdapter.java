@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import roomies.donationtracker.activities.LocationFragment.OnListFragmentInteractionListener;
-import roomies.donationtracker.activities.dummy.DummyContent.DummyItem;
 import roomies.donationtracker.models.Location;
 
 import java.util.List;
