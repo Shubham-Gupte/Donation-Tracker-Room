@@ -91,9 +91,9 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference usersReference = mainDatabase.child("users").child(userUID);
-        usersReference.push().setValue(userType);
+//        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference usersReference = mainDatabase.child("users").child(userUID);
+//        usersReference.push().setValue(userType);
     }
 
     private void initAdminSwitch() {

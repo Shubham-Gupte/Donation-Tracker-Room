@@ -2,11 +2,17 @@ package roomies.donationtracker.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
@@ -19,13 +25,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordInput;
 
     // Variables
-    static HashMap userList;
     int loginAttemptsRemaining = 3;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        auth = FirebaseAuth.getInstance();
 
         // User list setup
 
@@ -43,31 +50,27 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (userList.containsKey(userInput.getText().toString())
-                        && userList.containsValue(passwordInput.getText().toString())) {
-                    //correct, loginButton
-                    Toast.makeText(getApplicationContext(),
+                String email = userInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(),
                             "Correct! Logging you in...", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(i);
-                } else if(userInput.getText().toString().equals("cashier")) {
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    i.putExtra("userType","cashier");
-                    startActivity(i);
-                } else if(userInput.getText().toString().equals("location")) {
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    i.putExtra("userType","location");
-                    startActivity(i);
-                } else {
-                    //incorrect
-                    Toast.makeText(getApplicationContext(),
+                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(getApplicationContext(),
                             "Wrong loginButton credentials. Try again.", Toast.LENGTH_SHORT).show();
                     loginAttemptsRemaining--;
                     if (loginAttemptsRemaining == 0) {
                         //after 3 attempts disable loginButton button
                         loginButton.setEnabled(false);
                     }
-                }
+                        }
+                    }
+                });
             }
         });
     }
@@ -92,14 +95,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initPasswordInput() {
         passwordInput = findViewById(R.id.passwordInput);
-    }
-
-    public static  HashMap<String, String> getUserList() {
-        return userList;
-    }
-
-    public static  void setUserList(HashMap<String, String> users) {
-        userList = users;
     }
 
 }
