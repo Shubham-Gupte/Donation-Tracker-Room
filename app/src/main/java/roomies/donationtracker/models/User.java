@@ -10,6 +10,13 @@ public abstract class User {
     private String employeeID;
     private List<User> myEmployees;
 
+    /**
+     * The method creates a new user
+     * @param username the username for the new user
+     * @param password the password for the new user
+     * @param locations the locations the user should be for
+     * @param employeeID
+     */
     public User(String username, String password, List<User> locations, String employeeID) {
         this.username = username;
         this.password = password;
