@@ -26,16 +26,28 @@ import roomies.donationtracker.adapters.ItemsViewAdapter;
 import roomies.donationtracker.models.Item;
 import roomies.donationtracker.models.Location;
 
+/**
+ * presents the overall items list for all locations. Allows user to filter items
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ */
 public class ItemsActivity extends Activity {
 
-    // Map to use for creating location list
+    /**
+     *items list displayed, and location currently being viewed
+     */
     ArrayList<Item> itemsList = new ArrayList<>();
     ArrayList<Item> allItemsList = new ArrayList<>();
     Location location = null;
     String locationID = null;
 
 
-
+    /**
+     * creates ItemsActivity for the first time and instantiates view
+     *
+     * @param savedInstanceState
+     * @return void
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +74,11 @@ public class ItemsActivity extends Activity {
         });
     }
 
+    /**
+     * filters items based on user input
+     *
+     * @param s string inputted by the user - desired category or locatino
+     */
     private void filter(String s) {
         ArrayList<Item> filteredItems = new ArrayList<>();
 
@@ -84,14 +101,22 @@ public class ItemsActivity extends Activity {
         initItemsView();
     }
 
-
+    /**
+     * initializes view every time page is opened.
+     * @return void.
+     */
     @Override
     protected void onStart() {
         super.onStart();
         getIncomingIntent();
     }
 
-    // Gets the location ID sent with the intent
+    /**
+     * Gets the location ID sent with the intent
+     *
+     * @return void
+     */
+
     private void getIncomingIntent() {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
@@ -101,7 +126,11 @@ public class ItemsActivity extends Activity {
         }
     }
 
-    // Creates the logout button
+    /**
+     * initializes the add item button, which allows viewer to add an item to their preferred
+     * location by taking the viewer to the AddItemActivity class
+     * @return void
+     */
     private void initAddItemButton() {
         Button addItemButton = findViewById(R.id.addItemButtonID2);
         addItemButton.setOnClickListener(new View.OnClickListener(){
@@ -114,7 +143,10 @@ public class ItemsActivity extends Activity {
         });
     }
 
-    // Creates the locations view
+    /**
+     * creates the recycler view with all items
+     * @return void
+     */
     private void initItemsView() {
         RecyclerView itemsView = findViewById(R.id.recyclerViewID);
         ItemsViewAdapter itemsViewAdapter = new ItemsViewAdapter(itemsList);
@@ -122,8 +154,11 @@ public class ItemsActivity extends Activity {
         itemsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-//<<<<<<< HEAD
-    // Creates the logout button
+    /**
+     * Initialize the details for a specific location if the viewer has selected one
+     *
+     * @return void
+     */
     private void initLocationDetails() {
         TextView nameLabel = findViewById(R.id.nameLableId);
         nameLabel.setText(location.getLocationName());
@@ -146,7 +181,10 @@ public class ItemsActivity extends Activity {
     }
 
 
-    // Gets the locations from firebase and initializes the locations view
+    /**
+     * Gets the locations from firebase and initializes the locations view
+     * @param locationID the location the viewer wants to see items from
+     */
     private void getLocationItemsFromDB(String locationID) {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
@@ -193,7 +231,11 @@ public class ItemsActivity extends Activity {
 
     }
 
-    // Gets the locations from firebase and initializes the locations view
+    /**
+     *     Gets the locations from firebase and items from each of those locations
+     *     Calls init item view
+     *     @return void
+     */
     private void getAllItemsFromDB() {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();

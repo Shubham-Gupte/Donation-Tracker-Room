@@ -14,16 +14,33 @@ import java.util.ArrayList;
 
 import roomies.donationtracker.models.Item;
 
+
+/**
+ * class that allows an intake employee to add an item at the location where they are employed
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class AddItemActivity extends AppCompatActivity {
 
-    //views
+    /**
+     * the attributes of every added item transaction
+     */
     EditText itemName;
     EditText itemCost;
     EditText itemType;
     EditText donationDate;
     String locationID = null;
+    /**
+     * list of items attributed to this location, kept in firebase
+     */
     ArrayList<Item> firebaseList = null;
 
+    /**
+     * creates the view for the first time by initializing buttons etc.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +56,10 @@ public class AddItemActivity extends AppCompatActivity {
         getIncomingIntent();
     }
 
+    /**
+     * initialize Cancel button, which takes viewer back to ItemsActivity page
+     * @return void
+     */
     private void initCancelButton() {
         Button cancel = findViewById(R.id.cancelButton);
         cancel.setOnClickListener(new View.OnClickListener(){
@@ -49,6 +70,12 @@ public class AddItemActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * init add button, which confirms the user input and takes user back to ItemsActivity and
+     * adds item to firebase list
+     *
+     * @return void
+     */
     private void initAddButton() {
         Button addButton = findViewById(R.id.addItemButton);
         addButton.setOnClickListener(new View.OnClickListener(){
@@ -65,24 +92,40 @@ public class AddItemActivity extends AppCompatActivity {
         });
     }
 
-    // Gets the location ID sent with the intent
+    /**
+     *     Gets the location ID of the current employee, which is sent with the intent
+     *     @return void
+
+     */
     private void getIncomingIntent() {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
         }
     }
 
-    //add item to firebase
+    /**
+     * add item to firebase
+     * @param item item added in this transaction
+     */
     private void addItemToDatabase(final Item item) {
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference locationsReference = mainDatabase.child("locations").child(locationID).child("Items");
         locationsReference.push().setValue(item);
     }
 
+    /**
+     * update the item list in firebase with new item
+     * @param in the list with the added item
+     */
     private void setList(ArrayList<Item> in) {
         this.firebaseList = in;
     }
 
+    /**
+     * pull item list for this location from firebase
+     *
+     * @return current item list for this location.
+     */
     private ArrayList<Item> getList() {
         return this.firebaseList;
     }
