@@ -110,7 +110,7 @@ public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocati
 
         /**
          * to string method
-         * @return String
+         * @return Strings
          */
         @Override
         public String toString() {

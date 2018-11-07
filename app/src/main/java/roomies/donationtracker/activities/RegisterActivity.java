@@ -15,10 +15,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ * activity that allows a new user to create an account
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class RegisterActivity extends AppCompatActivity {
 
-    // Views
+    /**
+     * view components
+     */
     Button registerButton;
     Button cancelRegistrationButton;
     EditText user;
@@ -29,14 +36,25 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner userType;
     List<String> spinnerArray = Arrays.asList("Intake Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier");
 
-    // Variables
+    /**
+     * variables
+     */
     String key = "testKey123";
     static HashMap userList;
 
+    /**
+     * get user list
+     * @return static variable of user list
+     */
     public static HashMap<String, String> getUserList() {
         return userList;
     }
 
+    /**
+     * initializes the activity the first time the app is created
+     * @param savedInstanceState saved instance state
+     * @return void
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +70,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * init user type spinner
+     * @return void
+     */
     private void initUserType(){
         userType = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -60,6 +82,10 @@ public class RegisterActivity extends AppCompatActivity {
         userType.setAdapter(adapter);
     };
 
+    /**
+     * initialize cancel button, which takes user back to login screen
+     * @return void
+     */
     private void initcancelRegistrationButton() {
         cancelRegistrationButton = findViewById(R.id.cancelRegistrationButton);
         cancelRegistrationButton.setOnClickListener(new View.OnClickListener(){
@@ -71,6 +97,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * initialize admin switch, which authenticates whether or not the user is actually an admin
+     * @return void
+     */
     private void initAdminSwitch() {
         adminSwitch = findViewById(R.id.adminSwitch);
         adminKey = findViewById(R.id.adminAuthentication);
@@ -88,6 +118,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * initialize register button, which checks if passwords match and adds user to firebase
+     * @return void
+     */
     private void initRegisterButton() {
         registerButton = findViewById(R.id.signUpButton);
         //for right now, the registerButton button will just check if the passwords match
