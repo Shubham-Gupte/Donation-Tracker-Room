@@ -22,16 +22,27 @@ import roomies.donationtracker.adapters.ItemsViewAdapter;
 import roomies.donationtracker.models.Item;
 import roomies.donationtracker.models.Location;
 
-
+/**
+ * When a location is tapped, shows viewer the details for that location
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ */
 public class LocationDetailsActivity extends AppCompatActivity {
 
-    // Map to use for creating location list
+    /**
+     * location that is selected
+     */
     ArrayList<Item> itemsList = new ArrayList<>();
     Location location = null;
     String locationID = null;
 
 
-
+    /**
+     * initializes view the first time activity is opened
+     *
+     * @param savedInstanceState saved instance state
+     * @return void
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +52,20 @@ public class LocationDetailsActivity extends AppCompatActivity {
         getIncomingIntent();
     }
 
+    /**
+     * initializes view every time the view is opened
+     * @return void
+     */
     @Override
     protected void onStart() {
         super.onStart();
         getIncomingIntent();
     }
 
-    // Gets the location ID sent with the intent
+    /**
+     * gets locaction ID sent as an extra with intent
+     * @return void
+     */
     private void getIncomingIntent() {
         if (getIntent().hasExtra("location_ID")) {
             locationID = getIntent().getStringExtra("location_ID");
@@ -55,7 +73,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
         }
     }
 
-    // Creates the logout button
+    /**
+     * initializes done button on screen, which directs viewer back to the previous screen
+     * @return void
+     */
     private void initDoneButton() {
         Button doneButton = findViewById(R.id.doneButton_ID);
         doneButton.setOnClickListener(new View.OnClickListener(){
@@ -66,7 +87,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
         });
     }
 
-    // Creates the logout button
+    /**
+     * initializes view items button, which shows item list for that location
+     * @return void
+     */
     private void initViewItemsButton() {
         Button doneButton = findViewById(R.id.viewItemButtonID
         );
@@ -80,7 +104,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
         });
     }
 
-    // Creates the logout button
+    /**
+     * initializes location details, displays all as text on screen
+     * @return void
+     */
     private void initLocationDetails() {
         TextView nameLabel = findViewById(R.id.nameLableId);
         nameLabel.setText(location.getLocationName());
@@ -104,7 +131,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
 
 
-    // Gets the locations from firebase and initializes the locations view
+    /**
+     * Gets the locations from firebase and initializes the location details
+     * @return void
+     */
     private void getLocationsFromDB() {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
