@@ -20,11 +20,28 @@ import java.util.ArrayList;
 
 import roomies.donationtracker.models.Location;
 
+/**
+ * displays map with a marker at each location
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuuf
+ * @version 1.0
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    /**
+     * map from Google maps api
+     */
     private GoogleMap mMap;
+    /**
+     * locations list from firebase
+     */
     ArrayList<Location> locationsList = new ArrayList<>();
 
+    /**
+     * initializes app view  the first time it is created
+     *
+     * @param savedInstanceState saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +63,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
+     *
+     * @param googleMap the map from Google API
+     * @return void
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -57,7 +77,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    // Gets the locations from firebase and adds to locations list
+    /**
+     * get locations from firebase
+     *
+     * @return void
+     */
     private void getLocationsFromDB() {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
@@ -107,7 +131,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    //add all locations from database
+    /**
+     * add a marker for all locations
+     * @param locList arraylist of locations
+     */
     private void addLocations(ArrayList<Location> locList) {
         for (Location x: locList) {
             //create lat lang object
