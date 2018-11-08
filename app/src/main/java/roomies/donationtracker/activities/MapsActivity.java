@@ -2,6 +2,7 @@ package roomies.donationtracker.activities;
 
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
