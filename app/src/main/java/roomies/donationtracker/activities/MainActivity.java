@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         //gets usertype
         Intent myIntent = getIntent(); // gets the previously created intent
-        String type = myIntent.getStringExtra("userType");
-        userType = type;
+        userType = myIntent.getStringExtra("userType");
     }
 
 
