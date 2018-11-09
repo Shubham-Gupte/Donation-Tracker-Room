@@ -108,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //add all locations from database
-    private void addLocations(ArrayList<Location> locList) {
+    private void addLocations(Iterable<Location> locList) {
         for (Location x: locList) {
             //create lat lang object
             LatLng latAndLang = new LatLng(x.getLatitude(), x.getLongitude());

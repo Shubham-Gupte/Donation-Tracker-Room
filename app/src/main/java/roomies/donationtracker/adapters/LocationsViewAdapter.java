@@ -18,7 +18,7 @@ import roomies.donationtracker.models.Location;
 public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdapter.ViewHolder> {
 
     // Variables
-    private ArrayList<Location> locationsList;
+    private List<Location> locationsList;
     private Context context;
 
     public LocationsViewAdapter(Context context, ArrayList<Location> locations) {

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import roomies.donationtracker.activities.R;
 import roomies.donationtracker.models.Item;
@@ -15,7 +16,7 @@ import roomies.donationtracker.models.Item;
 public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.ViewHolder> {
 
     // Variables
-    private ArrayList<Item> itemsList;
+    private List<Item> itemsList;
 
     public ItemsViewAdapter(ArrayList<Item> items) {
         itemsList = items;
