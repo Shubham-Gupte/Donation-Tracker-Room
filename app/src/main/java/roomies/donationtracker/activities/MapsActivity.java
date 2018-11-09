@@ -17,13 +17,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import roomies.donationtracker.models.Location;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    ArrayList<Location> locationsList = new ArrayList<>();
+    List<Location> locationsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

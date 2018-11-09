@@ -18,7 +18,7 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
     // Variables
     private List<Item> itemsList;
 
-    public ItemsViewAdapter(ArrayList<Item> items) {
+    public ItemsViewAdapter(List<Item> items) {
         itemsList = items;
     }
 
@@ -61,7 +61,7 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
         }
     }
 
-    public void filterList(ArrayList<Item> filteredList) {
+    public void filterList(List<Item> filteredList) {
         itemsList = filteredList;
         notifyDataSetChanged();
     }
