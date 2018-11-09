@@ -188,7 +188,8 @@ public class ItemsActivity extends Activity {
     private void getLocationItemsFromDB(String locationID) {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference childReference = mainDatabase.child("locations").child(locationID).child("Items");
+        DatabaseReference childReference = mainDatabase.child("locations").child(locationID)
+                .child("Items");
 
         childReference.addValueEventListener(new ValueEventListener() {
             @Override

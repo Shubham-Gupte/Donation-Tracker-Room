@@ -27,7 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     Switch adminSwitch;
     EditText adminKey;
     Spinner userType;
-    List<String> spinnerArray = Arrays.asList("Intake Employee", "Warehouse Employee", "Intake Employee", "Manager", "Cashier");
+    List<String> spinnerArray = Arrays.asList("Intake Employee", "Warehouse Employee",
+            "Intake Employee", "Manager", "Cashier");
 
     // Variables
     String key = "testKey123";
@@ -102,7 +103,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 if (adminKey.getVisibility() == View.GONE) {
-                    if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                    if (password.getText().toString()
+                            .equals(confirmPassword.getText().toString())) {
                         userList.put(user.getText().toString(), password.getText().toString());
                         LoginActivity.setUserList(userList);
                         finish();
@@ -113,15 +115,16 @@ public class RegisterActivity extends AppCompatActivity {
                         fail.show();
                     }
                 } else {
-                    if (password.getText().toString().equals(confirmPassword.getText().toString()) &&
-                            adminKey.getText().toString().equals(key)) {
+                    if (password.getText().toString().equals(confirmPassword.getText().toString())
+                            && adminKey.getText().toString().equals(key)) {
                         userList.put(user.getText().toString(), password.getText().toString());
                         LoginActivity.setUserList(userList);
 
                         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
 
                         startActivity(i);
-                    } else if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                    } else if (password.getText().toString()
+                            .equals(confirmPassword.getText().toString())) {
                         AlertDialog fail = new AlertDialog.Builder(RegisterActivity.this).create();
                         fail.setTitle("Registration");
                         fail.setMessage("Admin Authentication incorrect!");

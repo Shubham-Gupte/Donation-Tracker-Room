@@ -7,7 +7,8 @@ public class Item {
     private String donationLocation;
     private String name;
 
-    public Item (String name, String type, double cost, String donationDate, String donationLocation) {
+    public Item (String name, String type, double cost, String donationDate,
+                 String donationLocation) {
         this.name = name;
         this.type = type;
         this.cost = cost;

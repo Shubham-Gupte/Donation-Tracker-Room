@@ -16,12 +16,14 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
+public class MyLocationRecyclerViewAdapter
+        extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
 
     private final List<Location> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyLocationRecyclerViewAdapter(List<Location> items, OnListFragmentInteractionListener listener) {
+    public MyLocationRecyclerViewAdapter(List<Location> items,
+                                         OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

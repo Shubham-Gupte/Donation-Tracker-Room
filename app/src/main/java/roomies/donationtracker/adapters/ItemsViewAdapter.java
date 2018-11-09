@@ -24,7 +24,8 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
     // Take the cell view from layout_location_cellon_cell.xml
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_cell, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_cell,
+                viewGroup, false);
         return new ViewHolder(view);
     }
 
