@@ -219,9 +219,10 @@ public class ItemsActivity extends Activity {
                     Item item = new Item(name, type, cost, donationDate, donationLocation);
 
                     //Add new item to item list
-                    itemsList.add(item);
+                    allItemsList.add(item);
                 }
                 // Initialize the locations view table
+                itemsList = allItemsList;
                 initItemsView();
             }
 

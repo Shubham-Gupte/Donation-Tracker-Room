@@ -18,11 +18,23 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
     // Variables
     private List<Item> itemsList;
 
-    public ItemsViewAdapter(List<Item> items) {
+
+    /**
+     * The method to cerate an Adapter
+     * @param items the items to start off with
+     */
+    public ItemsViewAdapter(ArrayList<Item> items) {
         itemsList = items;
     }
 
     // Take the cell view from layout_location_cellon_cell.xml
+
+    /**
+     * Creates a new view holder
+     * @param viewGroup the View group
+     * @param i an integer
+     * @return the created view holder
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_cell,
@@ -31,6 +43,12 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
     }
 
     // Set the views in each cell for the location
+
+    /**
+     * The View Holder for bind
+     * @param viewHolder the view Holder
+     * @param i the int
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Item item = itemsList.get(i);
@@ -41,12 +59,19 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
     }
 
     // Count how many cells the table needs
+
+    /**
+     * Counts how many cells the table needs
+     * @return returns the item size
+     */
     @Override
     public int getItemCount() {
         return itemsList.size();
     }
 
-    // The view holder
+    /**
+     * The view holder
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView itemNameView;
         TextView itemTypeView;
@@ -61,7 +86,11 @@ public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.View
         }
     }
 
-    public void filterList(List<Item> filteredList) {
+    /**
+     * Method to filter list
+     * @param filteredList the list to filter
+     */
+    public void filterList(ArrayList<Item> filteredList) {
         itemsList = filteredList;
         notifyDataSetChanged();
     }

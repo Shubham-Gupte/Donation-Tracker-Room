@@ -22,12 +22,22 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
     private List<Location> locationsList;
     private Context context;
 
+    /**
+     * Creates a new Location View adapter
+     * @param context the context
+     * @param locations list of locations
+     */
     public LocationsViewAdapter(Context context, ArrayList<Location> locations) {
         locationsList = locations;
         this.context = context;
     }
 
-    // Take the cell view from layout_location_cellon_cell.xml
+    /**
+     * Take the cell view from layout_location_cellon_cell.xml
+     * @param viewGroup The view group
+     * @param i integer
+     * @return new viewholder
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
@@ -35,7 +45,11 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
         return new ViewHolder(view);
     }
 
-    // Set the views in each cell for the location
+    /**
+     * Set the views in each cell for the location
+     * @param viewHolder The viewholder
+     * @param i integer
+     */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         viewHolder.locationNameView.setText(locationsList.get(i).getLocationName());
@@ -50,7 +64,10 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
         });
     }
 
-    // Count how many cells the table needs
+    /**
+     * Count how many cells the table needs
+     * @return the count of the items
+     */
     @Override
     public int getItemCount() {
         return locationsList.size();

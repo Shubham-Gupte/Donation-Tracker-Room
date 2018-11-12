@@ -10,18 +10,36 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+/**
+ * view that allows user to login
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class LoginActivity extends AppCompatActivity {
 
-    // Views
+    /**
+     * attributes shown on the screen like buttons and edit text fields
+     */
     Button loginButton;
     Button registerButton;
     EditText userInput;
     EditText passwordInput;
 
-    // Variables
+    /**
+     * user list used to check if input is a valid user
+     */
     static HashMap userList;
+
+    /**
+     * login attempts remaining
+     */
     int loginAttemptsRemaining = 3;
 
+    /**
+     * initializes view the first time the app is created
+     * @param savedInstanceState saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +61,11 @@ public class LoginActivity extends AppCompatActivity {
         initRegisterButton();
     }
 
+    /**
+     * initializes login button, which checks if user has entered valid information if so, sends
+     * them to the MainActivity screen
+     * @return void
+     */
     private void initLoginButton() {
         loginButton = findViewById(R.id.loginButton);
 
@@ -79,6 +102,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * init register button, which on a click takes user to RegisterActivity and create new user
+     * @return void
+     */
     private void initRegisterButton() {
         registerButton = findViewById(R.id.registrationButton);
 
@@ -93,18 +120,34 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * initialize username input text field
+     * @return void
+     */
     private void initUsernameInput() {
         userInput = findViewById(R.id.userInput);
     }
 
+    /**
+     * initialize password input text field, which hides characters
+     * @return void
+     */
     private void initPasswordInput() {
         passwordInput = findViewById(R.id.passwordInput);
     }
 
+    /**
+     * fetch user list from firebase
+     * @return the user list, obtained from firebase
+     */
     public static  HashMap<String, String> getUserList() {
         return userList;
     }
 
+    /**
+     * set updated user list
+     * @param users HashMap with users
+     */
     public static  void setUserList(HashMap<String, String> users) {
         userList = users;
     }
