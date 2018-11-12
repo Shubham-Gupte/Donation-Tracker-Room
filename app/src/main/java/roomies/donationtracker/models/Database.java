@@ -23,6 +23,8 @@ public class Database {
      */
     ArrayList<Location> locationList = new ArrayList<>();
     ArrayList<User> userList = new ArrayList<>();
+    DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference locationReference = mainDatabase.child("locations");
 
     /**
      * instantiates a database
@@ -36,10 +38,9 @@ public class Database {
      */
     public ArrayList<Location> getLocationsFromFirebase(){
         // Firebase connection reference
-        DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference childReference = mainDatabase.child("locations");
 
-        childReference.addValueEventListener(new ValueEventListener() {
+
+        locationReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 locationList = new ArrayList<>();
@@ -104,8 +105,33 @@ public class Database {
      *
      * @param location location to be added
      */
-    public void addLocation(Location location) {
+    public void addLocation(final Location location) {
+        locationReference.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    boolean contains = false;
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //for location in the list of locations, check if the name is the same
+                        for (DataSnapshot x: dataSnapshot.getChildren()) {
+                            if (x.child("Name").equals(location.getLocationName())){
+                                contains = true;
+                            }
+                        }
 
+                        //if the database doesn't contain that name, add the location in firebase
+                        //and in local list
+                        if (!contains) {
+                            locationReference.push().setValue(location);
+                            locationList.add(location);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                }
+        );
     }
 
     /**
