@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import roomies.donationtracker.activities.LocationFragment.OnListFragmentInteractionListener;
-import roomies.donationtracker.activities.dummy.DummyContent.DummyItem;
 import roomies.donationtracker.models.Location;
 
 import java.util.List;
@@ -17,12 +16,14 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
+public class MyLocationRecyclerViewAdapter
+        extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
 
     private final List<Location> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyLocationRecyclerViewAdapter(List<Location> items, OnListFragmentInteractionListener listener) {
+    public MyLocationRecyclerViewAdapter(List<Location> items,
+                                         OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -66,8 +67,8 @@ public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocati
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
         }
 
         @Override

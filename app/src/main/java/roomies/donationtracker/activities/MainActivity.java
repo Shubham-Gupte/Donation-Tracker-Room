@@ -1,7 +1,6 @@
 package roomies.donationtracker.activities;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,12 +22,31 @@ import roomies.donationtracker.adapters.LocationsViewAdapter;
 import roomies.donationtracker.models.Location;
 
 
+/**
+ * The class that launches the main screen when the android app opens
+ *
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
-    // Map to use for creating location list
+    /**
+     *     Map to use for creating location list
+     */
     ArrayList<Location> locationsList = new ArrayList<>();
+    /**
+     * type of user entering MainActivity
+     */
     String userType;
 
+
+    /**
+     * actions to be carried out on the first instantiation of the app
+     *
+     * @param savedInstanceState the saved instance state
+     * @return void
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,17 +64,25 @@ public class MainActivity extends AppCompatActivity {
 
         //gets usertype
         Intent myIntent = getIntent(); // gets the previously created intent
-        String type = myIntent.getStringExtra("userType");
-        userType = type;
+        userType = myIntent.getStringExtra("userType");
     }
 
+
+    /**
+     * on the opening of the app, fetche locations from firebase and shows UI
+     *
+     * @return void
+     */
     @Override
     protected void onStart() {
         super.onStart();
         getLocationsFromDB();
     }
 
-    //create view all items button
+    /**
+     * create button with text "view all items" that takes the user to the ItemsActivity class
+     * @return void
+     */
     private void initItemButton() {
         Button itemButton = findViewById(R.id.itemButton);
         itemButton.setOnClickListener(new View.OnClickListener(){
@@ -68,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //create map button
+    /**
+     * create map button that takes viewer to the screen that shows map with all locations
+     *
+     * @return void
+     */
     private void initMapButton() {
         Button mapButton = findViewById(R.id.mapButton);
         mapButton.setOnClickListener(new View.OnClickListener(){
@@ -106,8 +136,11 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-
-    // Creates the locations view
+    /**
+     * Creates the locations recycler view that is displayed on the home screen of the app
+     *
+     * @return void
+     */
     private void initLocationsView() {
         RecyclerView locationsView = findViewById(R.id.recyclerViewID);
         LocationsViewAdapter locationsViewAdapter = new LocationsViewAdapter(this, locationsList);
@@ -115,7 +148,10 @@ public class MainActivity extends AppCompatActivity {
         locationsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    // Creates the logout button
+    /**
+     *     Creates the logout button, which takes user back to login screen and restarts app
+     *     @return void
+     */
     private void initLogoutButton() {
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener(){
@@ -124,10 +160,13 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
-    // Gets the locations from firebase and initializes the locations view
+    /**
+     * Gets the locations from firebase and initializes the locations view
+     * @return void
+
+     */
     private void getLocationsFromDB() {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();

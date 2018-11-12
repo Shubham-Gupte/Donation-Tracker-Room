@@ -1,8 +1,8 @@
 package roomies.donationtracker.activities;
 
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,13 +17,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import roomies.donationtracker.models.Location;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    ArrayList<Location> locationsList = new ArrayList<>();
+    List<Location> locationsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     //add all locations from database
-    private void addLocations(ArrayList<Location> locList) {
+    private void addLocations(Iterable<Location> locList) {
         for (Location x: locList) {
             //create lat lang object
             LatLng latAndLang = new LatLng(x.getLatitude(), x.getLongitude());

@@ -16,7 +16,8 @@ public class Location {
     private List<Object> itemList;
 
     public Location(String locationName, String locationType, double longitude, double latitude,
-                    String street, String city, String state, String zip, String phoneNumber, String locationID) {
+                    String street, String city, String state, String zip, String phoneNumber,
+                    String locationID) {
         this.locationName = locationName;
         this.locationType = locationType;
         this.longitude = longitude;
