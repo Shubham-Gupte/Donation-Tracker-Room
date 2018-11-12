@@ -1,7 +1,6 @@
 package roomies.donationtracker.activities;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -65,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         //gets usertype
         Intent myIntent = getIntent(); // gets the previously created intent
-        String type = myIntent.getStringExtra("userType");
-        userType = type;
+        userType = myIntent.getStringExtra("userType");
     }
 
 

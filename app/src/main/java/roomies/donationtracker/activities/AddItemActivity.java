@@ -81,11 +81,14 @@ public class AddItemActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Item toAdd = new Item(itemName.getText().toString(), itemType.getText().toString(),
-                        Float.valueOf(itemCost.getText().toString()), donationDate.getText().toString(),
+                Item toAdd = new Item(itemName.getText().toString(),
+                        itemType.getText().toString(),
+                        Float.valueOf(itemCost.getText().toString()),
+                        donationDate.getText().toString(),
                         locationID);
                 addItemToDatabase(toAdd);
-                Intent i = new Intent(AddItemActivity.this, LocationDetailsActivity.class);
+                Intent i = new Intent(AddItemActivity.this,
+                        LocationDetailsActivity.class);
                 i.putExtra("location_ID", locationID);
                 startActivity(i);
             }

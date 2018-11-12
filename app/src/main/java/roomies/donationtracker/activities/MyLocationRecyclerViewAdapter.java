@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import roomies.donationtracker.activities.LocationFragment.OnListFragmentInteractionListener;
-import roomies.donationtracker.activities.dummy.DummyContent.DummyItem;
 import roomies.donationtracker.models.Location;
 
 import java.util.List;
@@ -19,13 +18,15 @@ import java.util.List;
  * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
  * @version 1.0
  */
-public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
+public class MyLocationRecyclerViewAdapter
+        extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
 
     /**
      * list of locations
      */
     private final List<Location> mValues;
     private final OnListFragmentInteractionListener mListener;
+
 
     /**
      * constructor that takes a list of items and listener
@@ -104,8 +105,8 @@ public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocati
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
         }
 
         /**

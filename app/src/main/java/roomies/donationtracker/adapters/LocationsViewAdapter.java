@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import roomies.donationtracker.activities.LocationDetailsActivity;
 import roomies.donationtracker.activities.R;
@@ -18,7 +19,7 @@ import roomies.donationtracker.models.Location;
 public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdapter.ViewHolder> {
 
     // Variables
-    private ArrayList<Location> locationsList;
+    private List<Location> locationsList;
     private Context context;
 
     /**
@@ -39,9 +40,9 @@ public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdap
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_location_cell, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.layout_location_cell, viewGroup, false);
+        return new ViewHolder(view);
     }
 
     /**

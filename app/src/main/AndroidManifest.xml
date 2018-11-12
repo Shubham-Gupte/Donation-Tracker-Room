@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +56,8 @@
             android:name=".ItemsActivity"
             android:windowSoftInputMode="adjustPan"
             android:label="@string/title_activity_items"></activity>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAjQj0zgL6LnqX9yUDwWIHO62HuaLZ-PW8"/>
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAjQj0zgL6LnqX9yUDwWIHO62HuaLZ-PW8"/>
     </application>
 
 </manifest>
