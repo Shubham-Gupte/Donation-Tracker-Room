@@ -30,6 +30,7 @@ import roomies.donationtracker.models.Location;
  * presents the overall items list for all locations. Allows user to filter items
  *
  * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
  */
 public class ItemsActivity extends Activity {
 
