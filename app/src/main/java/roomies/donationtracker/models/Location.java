@@ -138,7 +138,10 @@ public class Location {
      * @return the address
      */
     public String getAddress() {
-        return address;
+        if (address.contains("null") || address == null)
+            return "No Address";
+        else
+            return address;
     }
 
     /**
