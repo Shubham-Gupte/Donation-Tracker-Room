@@ -40,6 +40,11 @@ public class Location {
         this.locationID = locationID;
     }
 
+    public Location(String locationName) {
+        this(locationName, "Store", 3.45, 4.12, "Main st",
+                "ATL", "GA", "30000", "1092837112", "x");
+    }
+
     /**
      * Method to return the location name
      * @return the name of the location

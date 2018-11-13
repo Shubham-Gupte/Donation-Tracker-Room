@@ -108,20 +108,23 @@ public class Database {
     public void addLocation(final Location location) {
         locationReference.addListenerForSingleValueEvent(
                 new ValueEventListener() {
-                    boolean contains = false;
+                    int num = 1;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         //for location in the list of locations, check if the name is the same
                         for (DataSnapshot x: dataSnapshot.getChildren()) {
                             if (x.child("Name").equals(location.getLocationName())){
-                                contains = true;
+                                num += 1;
+                            }
+                            //if this is the second instance of the location, remove it
+                            if (num > 1) {
+                                x = null;
                             }
                         }
 
-                        //if the database doesn't contain that name, add the location in firebase
-                        //and in local list
-                        if (!contains) {
-                            locationReference.push().setValue(location);
+                        //if the database only has one instance of this location, it's the one
+                        //just added. add to locationList
+                        if (num == 1) {
                             locationList.add(location);
                         }
                     }
@@ -140,7 +143,7 @@ public class Database {
      * @return new list without location
      */
     public ArrayList<Location> removeLocation(Location location){
-
+        return null;
     }
 
 
