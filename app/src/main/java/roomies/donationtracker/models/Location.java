@@ -157,6 +157,16 @@ public class Location {
      * @return the phone number
      */
     public String getPhoneNumber() {
+        String numbers = "0123456789()- ";
+        if (phoneNumber == null) {
+            return "No Phone Number";
+        } else {
+            for (int i = 0; i < phoneNumber.length(); i++) {
+                if (numbers.indexOf(phoneNumber.charAt(i)) < 0) {
+                    return phoneNumber + " -- may be Invalid";
+                }
+            }
+        }
         return phoneNumber;
     }
 
