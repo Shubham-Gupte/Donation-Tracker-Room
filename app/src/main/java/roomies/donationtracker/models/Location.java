@@ -1,8 +1,9 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
+import java.lang.Object;
 
-public class Location {
+public class Location extends Object {
     private String locationName;
     private String locationType; // should change this to an enum later
     private double longitude;

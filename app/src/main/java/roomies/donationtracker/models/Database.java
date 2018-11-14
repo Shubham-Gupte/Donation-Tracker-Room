@@ -2,6 +2,7 @@ package roomies.donationtracker.models;
 
 import android.support.annotation.NonNull;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -9,6 +10,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class that represents a database that stores all locations, kept in firebase
@@ -75,13 +78,6 @@ public class Database {
                     // Add new location to location list
                     locationList.add(location);
                 }
-//                // Initialize the locations view table
-//                initLocationsView();
-//                if(userType != null && userType.equals("location")) {
-//                    Location obj = locationsList.get(0); // remember first item
-//                    locationsList.clear(); // clear complete list
-//                    locationsList.add(obj); // add first item
-//                }
             }
 
             @Override
@@ -106,26 +102,27 @@ public class Database {
      * @param location location to be added
      */
     public void addLocation(final Location location) {
+        final Map<String, Object> newLocation = new HashMap<>();
+        Object x = location;
+        newLocation.put(location.getLocationName(), x);
         locationReference.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     int num = 1;
+                    boolean contains = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         //for location in the list of locations, check if the name is the same
                         for (DataSnapshot x: dataSnapshot.getChildren()) {
                             if (x.child("Name").equals(location.getLocationName())){
-                                num += 1;
-                            }
-                            //if this is the second instance of the location, remove it
-                            if (num > 1) {
-                                x = null;
+                                contains = true;
                             }
                         }
 
                         //if the database only has one instance of this location, it's the one
                         //just added. add to locationList
-                        if (num == 1) {
+                        if (!contains) {
                             locationList.add(location);
+                            locationReference.updateChildren(newLocation);
                         }
                     }
 
