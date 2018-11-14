@@ -68,6 +68,9 @@ public class Item {
      * @param donationDate donation date
      */
     public void setDonationDate(String donationDate) {
+        if (!donationDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            throw new IllegalArgumentException("Date has to match the patter 00/00/0000");
+        }
         this.donationDate = donationDate;
     }
 
