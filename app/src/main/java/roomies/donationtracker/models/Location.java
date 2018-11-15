@@ -1,7 +1,6 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-import java.lang.Object;
 
 public class Location extends Object {
     private String locationName;

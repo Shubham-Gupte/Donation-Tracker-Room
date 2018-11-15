@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import roomies.donationtracker.activities.LocationFragment.OnListFragmentInteractionListener;
 import roomies.donationtracker.models.Location;
-
-import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Location} and makes a call to the

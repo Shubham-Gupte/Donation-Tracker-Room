@@ -1,8 +1,8 @@
 package roomies.donationtracker.activities;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,9 +17,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import roomies.donationtracker.models.Location;
-
 import java.util.ArrayList;
+
+import roomies.donationtracker.models.Location;
 
 /**
  * A fragment representing a list of Items.

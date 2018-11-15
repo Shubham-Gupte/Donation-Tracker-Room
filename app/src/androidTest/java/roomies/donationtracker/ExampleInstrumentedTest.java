@@ -2,11 +2,10 @@ package roomies.donationtracker;
 
 import android.content.Context;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test, which will execute on an Android device.
