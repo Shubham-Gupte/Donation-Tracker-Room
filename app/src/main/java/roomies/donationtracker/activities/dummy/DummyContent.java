@@ -22,7 +22,9 @@ public class DummyContent {
      * A map of sample (dummy) items, by ID.
      */
     public static final Map<String, DummyItem> ITEM_MAP = new HashMap<>();
-
+    /**
+     * A number of dummy items
+     */
     private static final int COUNT = 25;
 
     static {
@@ -32,15 +34,29 @@ public class DummyContent {
         }
     }
 
+    /**
+     * A Method to add the dummy item to the list
+     * @param item the item to add
+     */
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
+    /**
+     * A method to create a dummy item
+     * @param position the position it is based on
+     * @return New ly created dummy item
+     */
     private static DummyItem createDummyItem(int position) {
         return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
+    /**
+     * Method to add details to dummy
+     * @param position dummy's position
+     * @return the created strinf
+     */
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
         builder.append("Details about Item: ").append(position);
@@ -58,12 +74,22 @@ public class DummyContent {
         public final String content;
         public final String details;
 
+        /**
+         * Constructor for dummy item
+         * @param id id of dummy
+         * @param content content of dummy
+         * @param details details of dummy
+         */
         public DummyItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
         }
 
+        /**
+         * toString method to return dummy's content
+         * @return dummy's content
+         */
         @Override
         public String toString() {
             return content;

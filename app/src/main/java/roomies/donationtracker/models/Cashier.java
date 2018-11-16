@@ -1,7 +1,12 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-
+/**
+ * class that creates a Cashier
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class Cashier extends User {
     /**
      * Method to return the cost of an item

@@ -13,10 +13,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+/**
+ * class that allows users to login
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class LoginActivity extends AppCompatActivity {
 
-    // Views
+    /**
+     * Creates the variables for onscreen elements
+     */
     Button loginButton;
     Button registerButton;
     EditText userInput;
@@ -26,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
     int loginAttemptsRemaining = 3;
     FirebaseAuth auth;
 
+    /**
+     * Method that runs when view is loaded
+     * @param savedInstanceState the previous instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         initRegisterButton();
     }
 
+    /**
+     * Initializes the log in button on screen
+     */
     private void initLoginButton() {
         loginButton = findViewById(R.id.loginButton);
 
@@ -73,6 +87,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initializes the register button on screen
+     */
     private void initRegisterButton() {
         registerButton = findViewById(R.id.registrationButton);
 
@@ -87,10 +104,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initializes the username input on screen
+     */
     private void initUsernameInput() {
         userInput = findViewById(R.id.userInput);
     }
 
+    /**
+     * Initializes the password input on screen
+     */
     private void initPasswordInput() {
         passwordInput = findViewById(R.id.passwordInput);
     }

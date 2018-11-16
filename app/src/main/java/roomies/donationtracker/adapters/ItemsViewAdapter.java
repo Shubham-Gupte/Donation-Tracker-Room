@@ -12,7 +12,12 @@ import java.util.List;
 
 import roomies.donationtracker.activities.R;
 import roomies.donationtracker.models.Item;
-
+/**
+ * class that creates view for items
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.ViewHolder> {
 
     // Variables

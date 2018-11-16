@@ -2,7 +2,13 @@ package roomies.donationtracker.models;
 
 import org.junit.Assert;
 import org.junit.Test;
-
+/**
+ * Test that focuses on modofiying locations
+ *
+ * @author Arman Varzi, Carl Roosipuu, Shubham Gupte
+ * @version 1.0
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
 
 public class LocationTest {
 

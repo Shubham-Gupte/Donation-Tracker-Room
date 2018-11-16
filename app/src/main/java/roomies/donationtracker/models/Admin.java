@@ -1,12 +1,17 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-
+/**
+ * class that creates an Admin
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class Admin extends User {
     private List<User> employeeList;
 
     /**
-     * The class to create an admin
+     * The constructor to create an admin
      * @param username username for the admin
      * @param password password
      * @param locations locations for the admin

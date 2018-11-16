@@ -1,7 +1,12 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-
+/**
+ * class that create a Warehouse Employee
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class WarehouseEmployee extends roomies.donationtracker.models.User {
     /**
      * This is a method to take in a list of  employees

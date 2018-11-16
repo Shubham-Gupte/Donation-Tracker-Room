@@ -46,6 +46,9 @@ public class LocationFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
+    /**
+     * creates instance of locationFragment
+     */
     public static LocationFragment newInstance(int columnCount) {
         LocationFragment fragment = new LocationFragment();
         Bundle args = new Bundle();
@@ -54,6 +57,10 @@ public class LocationFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Runs when activity starts
+     * @param savedInstanceState previous instance of this activity
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +72,13 @@ public class LocationFragment extends Fragment {
         getLocationsFromDB();
     }
 
+    /**
+     * Runs when the view is created
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +98,10 @@ public class LocationFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Attaches to fragment
+     * @param context context to attach
+     */
 
     @Override
     public void onAttach(Context context) {
@@ -96,6 +114,9 @@ public class LocationFragment extends Fragment {
         }
     }
 
+    /**
+     * This detaches the context from the activity
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -117,8 +138,9 @@ public class LocationFragment extends Fragment {
         void onListFragmentInteraction(Location location);
     }
 
-
-    // Gets the locations from firebase and initializes the locations view
+    /**
+     * Gets the locations from firebase and initializes the locations view
+     */
     private void getLocationsFromDB() {
         // Firebase connection reference
         DatabaseReference mainDatabase = FirebaseDatabase.getInstance().getReference();

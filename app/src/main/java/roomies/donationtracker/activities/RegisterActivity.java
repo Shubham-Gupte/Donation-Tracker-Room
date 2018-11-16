@@ -23,7 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * class that allows someone to register a suer
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     // Views
@@ -81,6 +86,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method that adds user to firebase database
+     * @param username the username of user
+     * @param password the password of user being added
+     * @param userType the type of user
+     */
     private void firebaseRegister(final String username, String password, final String userType) {
         auth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
