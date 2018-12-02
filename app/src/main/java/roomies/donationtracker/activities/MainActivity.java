@@ -110,32 +110,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    //create action bar with multiple fragments
-//    private void initActionBar() {
-//        final ActionBar actionBar = getActionBar();
-//        actionBar.setNavigationMode(actionBar.NAVIGATION_MODE_TABS);
-//        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-//            @Override
-//            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-//                //when you select the tab, show the appropriate fragment
-//            }
-//
-//            @Override
-//            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-//                //when you unselect the tab
-//            }
-//
-//            @Override
-//            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-//
-//            }
-//        };
-//
-//        actionBar.addTab(actionBar.newTab().setText("List").setTabListener(tabListener));
-//        actionBar.addTab(actionBar.newTab().setText("Map").setTabListener(tabListener));
-//    }
-
-
     /**
      * Creates the locations recycler view that is displayed on the home screen of the app
      *

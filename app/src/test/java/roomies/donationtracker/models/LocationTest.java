@@ -2,7 +2,13 @@ package roomies.donationtracker.models;
 
 import org.junit.Assert;
 import org.junit.Test;
-
+/**
+ * Test that focuses on modofiying locations
+ *
+ * @author Arman Varzi, Carl Roosipuu, Shubham Gupte
+ * @version 1.0
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
 
 public class LocationTest {
 
@@ -31,5 +37,17 @@ public class LocationTest {
         Assert.assertEquals("(678)457-6830", validPhone.getPhoneNumber());
         Assert.assertEquals("(67a)457-6830 -- may be Invalid", inValidPhone.getPhoneNumber());
         Assert.assertEquals("No Phone Number", LocationClassNull.getPhoneNumber());
+    }
+
+    @Test
+    public void getLocationType() {
+        Location validPhone = new Location("locationName", "validLocationType", 1.9,  1.2,
+                "street", "city", "state", "zip", "(678)457-6830",
+                "locationID");
+        Location inValidPhone = new Location("locationName", "InvalidLocationType", 1.9,  1.2,
+                "street", "city", "state", "zip", "(67a)457-6830",
+                "locationID");
+        Assert.assertEquals("validLocationType", validPhone.getLocationType());
+        Assert.assertEquals("InvalidLocationType", inValidPhone.getLocationType());
     }
 }

@@ -1,15 +1,11 @@
 package roomies.donationtracker;
 
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import roomies.donationtracker.models.Database;
 import roomies.donationtracker.models.Location;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test that focuses on adding locations to the firebase database,

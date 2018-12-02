@@ -1,7 +1,7 @@
 package roomies.donationtracker.activities;
 
-import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import roomies.donationtracker.models.Location;
 
@@ -94,19 +93,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 locationsList = new ArrayList<>();
                 // Iterate through data from database
                 for (DataSnapshot x : dataSnapshot.getChildren()) {
-
-                    // Print database location info for debugging
-                    /**
-                     System.out.println("Name: " + x.child("Name").getValue());
-                     System.out.println("Type: " + x.child("Type").getValue());
-                     System.out.println("Longitude: " + x.child("Longitude").getValue());
-                     System.out.println("Latitude: " + x.child("Latitude").getValue());
-                     System.out.println("Street Address: " + x.child("Street Address").getValue());
-                     System.out.println("City: " + x.child("City").getValue());
-                     System.out.println("State: " + x.child("State").getValue());
-                     System.out.println("Zip: " + x.child("Zip").getValue());
-                     System.out.println("Phone: " + x.child("Phone").getValue());
-                     **/
 
                     // Create a new location object from database data
                     Location location = new Location((String)x.child("Name").getValue(),

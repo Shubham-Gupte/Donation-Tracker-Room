@@ -1,7 +1,12 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-
+/**
+ * class that creates a Manager
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class Manager extends User {
     private List<User> employeeList;
 

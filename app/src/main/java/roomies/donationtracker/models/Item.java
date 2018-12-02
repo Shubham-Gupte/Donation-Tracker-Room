@@ -1,5 +1,10 @@
 package roomies.donationtracker.models;
-
+/**
+ * class that creates Items
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class Item {
     private String type; //enum later
     private double cost;
@@ -68,6 +73,9 @@ public class Item {
      * @param donationDate donation date
      */
     public void setDonationDate(String donationDate) {
+        if (!donationDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            throw new IllegalArgumentException("Date has to match the patter 00/00/0000");
+        }
         this.donationDate = donationDate;
     }
 

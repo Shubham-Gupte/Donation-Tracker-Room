@@ -1,7 +1,12 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-
+/**
+ * class that creates a User
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public abstract class User {
     private String username;
     private String password;

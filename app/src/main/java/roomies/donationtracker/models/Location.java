@@ -1,8 +1,12 @@
 package roomies.donationtracker.models;
 
 import java.util.List;
-import java.lang.Object;
-
+/**
+ * class that creates Locations
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class Location extends Object {
     private String locationName;
     private String locationType; // should change this to an enum later

@@ -1,5 +1,11 @@
 package roomies.donationtracker.models;
 
+/**
+ * class that creates an Intake Item
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class IntakeEmployee extends User {
     /**
      * Method to intake an Object

@@ -15,7 +15,12 @@ import java.util.List;
 import roomies.donationtracker.activities.LocationDetailsActivity;
 import roomies.donationtracker.activities.R;
 import roomies.donationtracker.models.Location;
-
+/**
+ * class that creates view for Locations
+ *
+ * @author Polly Ouellette, Arman Varzi, Shubham Gupte, Will Hay, Carl Roosipuu
+ * @version 1.0
+ */
 public class LocationsViewAdapter extends RecyclerView.Adapter<LocationsViewAdapter.ViewHolder> {
 
     // Variables
