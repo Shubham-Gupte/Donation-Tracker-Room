@@ -1,0 +1,18 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>List of Locations</title>
+  </head>
+
+<body>
+</body>
+<h1> List of Locations:</h1>
+<h3>Click each location for more info</h3>
+
+{% for item in data %}
+<a href="{{url_for('location', key = item['Key'] ) }}"><p>{{item['Name']}}</p></a>
+{% endfor %}
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="{{url_for('static', filename='app.js')}}"></script>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Add Item</title>
+  </head>
+
+<body>
+    <h1> Add Item</h1>
+        <form action="{{url_for('handle_data', location = location)}}" method ="post">
+            Name:<br>
+            <input type="text" name="name" value="" id="username">
+            <br>
+            Type:<br>
+            <input type="text" name="type" value="" id="password">
+            <br><br>
+            Cost:<br>
+            <input type="text" name="cost" value="" id="cost">
+            <br>
+            Date:<br>
+            <input type="text" name="date" value="" id="date">
+            <br>
+            <input type="submit" value="Submit" id="btnLogin">
+          </form> 
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="{{url_for('static', filename='app.js')}}"></script>
+</html>
