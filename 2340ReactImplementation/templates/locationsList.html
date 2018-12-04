@@ -1,0 +1,23 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>List of Locations</title>
+  </head>
+
+<body>
+</body>
+<h1>Location List</h1>
+<h2>These are the current locations registered in your company. <br> Click each location for more information.</h2>
+
+{% for item in data %}
+<a href="{{url_for('location', key = item['Key'] ) }}"><p>{{item['Name']}}</p></a>
+{% endfor %}
+
+<iframe src="https://www.google.com/maps/d/embed?mid=1NiXPAhaT8rMR6XNMTq0GSnyveCr5le8O" width="640" height="480"></iframe>
+<br>
+<a href="{{url_for('hello_world')}}"><button>Log Out</button></a>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="{{url_for('static', filename='app.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='custom.css')}}">
+</html>

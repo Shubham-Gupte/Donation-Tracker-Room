@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+  </head>
+
+<body>
+<h2> We're glad you're joining us as a new user. <br> Please fill out the following information.</h2>
+</body>
+<form action="{{url_for('register')}}" method ="post">
+  Email:<br>
+  <input type="text" name="firstname" value="" id="username">
+  <br>
+  Password:<br>
+  <input type="text" name="lastname" value="" id="password">
+  <br>
+  Name:
+  <br>
+  <input type="text" name="name" value="" id="password">
+  <br>
+  Employee Type:
+  <br>
+  <input type="text" name="name" value="" id="password">
+  <br>
+  Location:
+  <br>
+  <input type="text" name="name" value="" id="password">
+  <br>
+  <input type="submit" value="Register" id="btnRegister">
+</form> 
+
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="{{url_for('static', filename='app.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='custom.css')}}">
+</html>
