@@ -17,7 +17,7 @@
 <p>Type: {{data['Type']}}</p>
 <p>Website: {{data['Website']}}</p>
 <a href="{{url_for('addItems', location = data['Key']) }}"><button>Add Item</button></a>
-<p>Items:
+<p>Items at this location:
     <ul>
     {% for item in data['Items'] %}
     <li>
@@ -31,5 +31,5 @@ src="https://www.google.com/maps/embed/v1/place?q={{ data['Latitude'] }},{{ data
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
 <script src="{{url_for('static', filename='app.js')}}"></script>
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='custom.css')}}">
+<link rel="stylesheet" type="text/css" href="../static/custom.css">
 </html>
