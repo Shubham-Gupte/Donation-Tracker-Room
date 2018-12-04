@@ -1,15 +1,31 @@
 from flask import Flask, render_template, redirect, request, url_for
 import requests
 import json
+import pyrebase
+
+config = {
+  "apiKey": "AIzaSyDb5OTYD1fQhxyA-iLKWzX_Og666-DgK_E",
+  "authDomain": "donation-tracker-room.firebaseapp.com",
+  "databaseURL": "https://donation-tracker-room.firebaseio.com",
+  "storageBucket": "donation-tracker-room.appspot.com"
+}
+
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
-loggedInFlask = False
-attemptsRemaining = 3
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def hello_world():
-    return render_template("login.html")
+    if request.method == 'POST':
+        email = request.form['firstname']
+        password = request.form['lastname']
+        user = auth.sign_in_with_email_and_password(email, password)
+        print(user)
+        return redirect(url_for('locationsList'))
+    else:
+        return render_template("login.html")
 
 @app.route('/register')
 def register():
@@ -17,8 +33,6 @@ def register():
 
 @app.route('/locationsList')
 def locationsList():
-    if not loggedInFlask:
-        return redirect(url_for('hello_world'))
     URL = "https://donation-tracker-room.firebaseio.com/locations.json"
     r = requests.get(url = URL)
     data = r.json()
@@ -26,8 +40,6 @@ def locationsList():
 
 @app.route('/location/<key>')
 def location(key):
-    if not loggedInFlask:
-        return redirect(url_for('hello_world'))
     key = int(key) - 1
     URL = "https://donation-tracker-room.firebaseio.com/locations/" + str(key) +".json"
     r = requests.get(url = URL)
@@ -36,15 +48,11 @@ def location(key):
 
 @app.route('/addItem/<location>')
 def addItems(location):
-    if not loggedInFlask:
-        return redirect(url_for('hello_world'))
     key = int(location) - 1
     return render_template("addItem.html", location=key)
 
 @app.route('/handle_data/<location>', methods = ['GET', 'POST'])
 def handle_data(location):
-    if not loggedInFlask:
-        return redirect(url_for('hello_world'))
     key = int(location) - 1
     if request.method == 'POST':
         cost = request.form['cost']
