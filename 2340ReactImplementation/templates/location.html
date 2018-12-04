@@ -28,8 +28,10 @@
 </p>
 <iframe width="600" height="450" frameborder="0" style="border:0"
 src="https://www.google.com/maps/embed/v1/place?q={{ data['Latitude'] }},{{ data['Longitude'] }}&key=AIzaSyDb5OTYD1fQhxyA-iLKWzX_Og666-DgK_E" allowfullscreen></iframe>
+<br>
+<a href="{{url_for('hello_world')}}"><button>Log Out</button></a>
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
 <script src="{{url_for('static', filename='app.js')}}"></script>
-<link rel="stylesheet" type="text/css" href="../static/custom.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='custom.css')}}">
 </html>

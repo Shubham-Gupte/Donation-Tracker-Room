@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 import requests
 import json
 import pyrebase
@@ -21,15 +21,24 @@ def hello_world():
     if request.method == 'POST':
         email = request.form['firstname']
         password = request.form['lastname']
-        user = auth.sign_in_with_email_and_password(email, password)
-        print(user)
-        return redirect(url_for('locationsList'))
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            return redirect(url_for('locationsList'))
+        except:
+            flash("incorrect")
+            return redirect(url_for('hello_world'))
     else:
         return render_template("login.html")
 
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
-    return render_template("register.html")
+    if request.method == 'POST':
+        email = request.form['firstname']
+        password = request.form['lastname']
+        auth.create_user_with_email_and_password(email, password)
+        return redirect(url_for('hello_world'))
+    else:
+        return render_template("register.html")
 
 @app.route('/locationsList')
 def locationsList():
